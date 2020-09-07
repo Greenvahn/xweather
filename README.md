@@ -45,7 +45,7 @@ $ yarn build
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Art direction / UI-UX
-See the visual aspects nad layouts for this project on [Behance](https://www.behance.net/gallery/103830659/XWeather?tracking_source=for_you_feed_user_published).
+See the visual aspects and wireframes for this project on [Behance](https://www.behance.net/gallery/103830659/XWeather?tracking_source=for_you_feed_user_published).
 
 ## License
 You can check out the full license [here](https://github.com/Greenvahn/xweather/blob/master/LICENSE).
