@@ -1,24 +1,37 @@
-# xweather
 
-## Project setup
+<p align="center">
+  <img alt="logo" width="250px" height="250px" src="https://github.com/Greenvahn/xweather/blob/master/behance-thumbnail.jpg?raw=true">
+</p>
+
+## Technologies
+Project is created with:
+* Vue
+
+## Setup
+To runt this project you need [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/download/) and [yarn](https://classic.yarnpkg.com/en/).
+
+From your command line:
 ```
-yarn install
+# Install dependencies
+$ yarn install
+# Run the app
+$ yarn start
+
 ```
 
-### Compiles and hot-reloads for development
+### Other scripts available
+Once the project has been installed, the following scripts to use:
+
+**lint** - analize/formats source code
 ```
-yarn serve
+$ yarn lint
+```
+**build** - creates the deployment files ready to publish
+```
+$ yarn build
 ```
 
-### Compiles and minifies for production
-```
-yarn build
-```
+## License
+You can check out the full license [here](https://github.com/Greenvahn/xweather/blob/master/LICENSE).
 
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+This project is licensed under the terms of the **MIT** license.
