@@ -1,5 +1,4 @@
 name : "Xweather"
-image: yarn:1.22.4
 on: [push, pull_request]
 
 jobs:
@@ -7,9 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Install dependencies
-      run: yarn install
-    - name: Check linting
-      run: yarn lint
-    - name: Check build
-      run: yarn build
+      run: |
+        yarn install && CI=false yarn lint && yarn build
     
