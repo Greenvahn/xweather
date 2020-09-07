@@ -1,10 +1,9 @@
 name : "Xweather"
-on: [pull_request]
+on: [push, pull_request]
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
     - name: Install dependencies
-    - run: |
-        yarn install && yarn build
+      run: yarn install
