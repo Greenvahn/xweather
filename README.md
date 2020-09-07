@@ -1,14 +1,25 @@
 
-<p align="center">
-  <img alt="logo" width="250px" height="250px" src="https://github.com/Greenvahn/xweather/blob/master/behance-thumbnail.jpg?raw=true">
-</p>
+
+<img alt="logo" width="50%" height="50%" src="https://github.com/Greenvahn/xweather/blob/master/behance-thumbnail.jpg?raw=true">
 
 ## Technologies
-Project is created with:
-* Vue
+This project has been created with:
+* [Vue](https://vuejs.org/)
+* [Node.js](https://nodejs.org/en/download/)
+* [Yarn](https://classic.yarnpkg.com/en/)
+
+## Project status
+```
+version 0.1.0
+```
 
 ## Setup
-To runt this project you need [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/download/) and [yarn](https://classic.yarnpkg.com/en/).
+Minimun requirements:
+```
+Git  2.28.0
+Node 14.6.0
+Yarn 1.22.0
+```
 
 From your command line:
 ```
@@ -16,7 +27,6 @@ From your command line:
 $ yarn install
 # Run the app
 $ yarn start
-
 ```
 
 ### Other scripts available
@@ -30,6 +40,9 @@ $ yarn lint
 ```
 $ yarn build
 ```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ## License
 You can check out the full license [here](https://github.com/Greenvahn/xweather/blob/master/LICENSE).
