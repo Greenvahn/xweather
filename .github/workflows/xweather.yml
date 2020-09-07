@@ -1,19 +1,15 @@
 name : "Xweather"
-image: yarn:1.22.0
+on: pull_request
 
-pipelines:
-  default:
-  - step:
-      name: Install dependencies
-      caches: 
-      - yarn
-      script:
-      - yarn install
+jobs:
+  test:
+    steps:
+    - name: Install dependencies
+    - run: yarn install
 
-  - parallel:
-    - step:
-        name: Check Linting
-        caches: 
-        - yarn
-      script:
-      - yarn lint
+    - name: Check Linting
+    - run: yarn lint
+
+   - name: Check build
+    - run: yarn build
+    
