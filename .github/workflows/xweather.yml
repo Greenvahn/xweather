@@ -1,0 +1,19 @@
+name : "Xweather"
+image: yarn:1.22.0
+
+pipelines:
+  default:
+  - step:
+      name: Install dependencies
+      caches: 
+      - yarn
+      script:
+      - yarn install
+
+  - parallel:
+    - step:
+        name: Check Linting
+        caches: 
+        - yarn
+      script:
+      - yarn lint
