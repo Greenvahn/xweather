@@ -1,0 +1,15 @@
+name : "Xweather"
+on: pull_request
+
+jobs:
+  test:
+    steps:
+    - name: Install dependencies
+    - run: yarn install
+
+    - name: Check Linting
+    - run: yarn lint
+
+   - name: Check build
+    - run: yarn build
+    
