@@ -1,5 +1,4 @@
 name : "Xweather"
-image: yarn:1.22.4
 on: [push, pull_request]
 
 jobs:
@@ -7,11 +6,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Install dependencies
-      caches:
-        - yarn
       run: yarn install
     - name: Check linting
-      run: yarn lint
+      run: vue-cli-service lint
     - name: Check build
-      run: yarn build
+      run: vue-cli-service build
     
