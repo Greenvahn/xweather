@@ -5,5 +5,5 @@ jobs:
   test:
     steps:
     - name: Install dependencies
-    - run: yarn install
+      run: yarn install
     
