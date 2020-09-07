@@ -6,9 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Install dependencies
-      run: yarn install
-    - name: Check linting
-      run: vue-cli-service lint
+      run: yarn install && yarn lint
     - name: Check build
       run: vue-cli-service build
     
