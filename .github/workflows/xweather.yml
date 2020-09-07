@@ -3,6 +3,7 @@ on: pull_request
 
 jobs:
   test:
+    runs-on: ubuntu-latest
     steps:
     - name: Install dependencies
       run: yarn install
