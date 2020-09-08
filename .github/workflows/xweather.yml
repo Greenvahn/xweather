@@ -1,5 +1,5 @@
 name : "Xweather"
-on: [push, pull_request]
+on: [push]
 
 jobs:
   test:
@@ -8,4 +8,4 @@ jobs:
     - uses: actions/checkout@v1
     - name: Install dependencies
       run: |
-        yarn install && yarn build
+        yarn install && yarn lint && yarn build
