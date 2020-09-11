@@ -1,0 +1,13 @@
+// custom css goes here
+// These values overwrite the Bulma default values
+// Check https://bulma.io/documentation/customize/variables/ for further information
+
+// Import google fonts
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+
+$family-sans-serif: 'Montserrat', sans-serif;
+$family-sans-serif-common: 'Source Sans Pro', sans-serif;
+
+$family-primary: $family-sans-serif;
+$family-secondary: $family-sans-serif-common;
