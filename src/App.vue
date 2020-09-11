@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HelloWorld :msg="retrieveData(Othermessage)"/>
+    <p>{{Othermessage}}</p>
+<b-message title="Default" aria-close-label="Close message">
+            {{Othermessage}}
+        </b-message>
   </div>
 </template>
 
@@ -12,6 +16,17 @@ export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+  data () {
+    return {
+      Othermessage: "This is my other message"
+    }
+  },
+  methods: {
+    retrieveData: (myMessage)=> {
+      const updateMessage = myMessage + ' and this is the additional part';
+      return updateMessage;
+    }
   }
 }
 </script>
