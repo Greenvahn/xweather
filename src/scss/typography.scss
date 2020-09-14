@@ -2,4 +2,9 @@
 
 p {
     font-family: $family-secondary;
+    &.subtitle,
+    &.title {
+        font-family: $family-primary;
+        font-weight: 400;
+    }
 }
