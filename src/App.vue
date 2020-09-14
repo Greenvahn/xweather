@@ -1,30 +1,16 @@
 <template>
-  <div id="app">
-    <MainWidget :infoToday="{ today: 'Today', temperature: 25 }" />
-    <forecastWidget
-      :infoWeek="[
-        { day: 'Fri', temperature: 26 },
-        { day: 'Sat', temperature: 22 },
-        { day: 'Sun', temperature: 24 },
-      ]"
-    />
-    <geoWidget
-      :infoPlace="{ date: '14/09/2020', place: 'London', hour: '08:21PM' }"
-    />
+  <div id="app" class="container is-fluid">
+    <weather-page />
   </div>
 </template>
 
 <script>
-import MainWidget from "./components/mainWidget.vue";
-import forecastWidget from "./components/forecastWidget.vue";
-import geoWidget from "./components/geoWidget.vue";
+import weatherPage from "./components/weatherPage.vue";
 
 export default {
   name: "App",
   components: {
-    MainWidget,
-    forecastWidget,
-    geoWidget,
+    weatherPage,
   },
   data() {
     return {

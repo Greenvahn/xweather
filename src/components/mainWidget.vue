@@ -1,9 +1,11 @@
 <template>
-  <div class="container">
-    <p>{{infoToday.today}}</p>
-    <h1 class="title">
-      {{infoToday.temperature}}
-    </h1>
+  <div class="tile is-4">
+    <div class="container has-text-centered">
+      <p>{{ infoToday.today }}</p>
+      <h1 class="title">
+        {{ infoToday.temperature }}
+      </h1>
+    </div>
   </div>
 </template>
 
