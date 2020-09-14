@@ -1,7 +1,5 @@
 <template>
-  <div id="app" class="container is-fluid">
     <weather-page />
-  </div>
 </template>
 
 <script>
@@ -24,4 +22,12 @@ export default {
 <style lang="scss">
 @import "scss/custom";
 @import "bulma";
+
+#app {
+  top:50%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 </style>

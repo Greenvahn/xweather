@@ -1,25 +1,32 @@
 <template>
-  <div class="tile is-ancestor">
-    <div class="tile is-vertical is-8">
-      <div class="tile is-parent">
-        <logoWidget />
-        <MainWidget :infoToday="{ today: 'Today', temperature: 25 }" />
+  <div id="weather-page" class="container is-fluid">
+    <div class="container wrapper">
+      <div class="main-panel">
+          <div class="logo-wrap"><logoWidget /></div>
+          <div class="mainWidget-wrap">
+            <MainWidget :infoToday="{ day: 'Today', temperature: '25°' }" />
+          </div>
       </div>
-    </div>
-    <div class="tile is-parent is-vertical is-4">
-      <div class="tile is-child">
-        <forecastWidget
-          :infoWeek="[
-            { day: 'Fri', temperature: 26 },
-            { day: 'Sat', temperature: 22 },
-            { day: 'Sun', temperature: 24 },
-          ]"
-        />
-      </div>
-      <div class="tile is-child">
-        <geoWidget
-          :infoPlace="{ date: '14/09/2020', place: 'London', hour: '08:21PM' }"
-        />
+      <div class="forecast-panel">
+        <div class="forecast--info">
+          <forecastWidget
+            :infoWeek="[
+              { day: 'Thu', temperature: '26°' },
+              { day: 'Fri', temperature: '22°' },
+              { day: 'Sat', temperature: '24°' },
+              { day: 'Sun', temperature: '26°' },
+            ]"
+          />
+        </div>
+        <div class="forecast--place">
+          <geoWidget
+            :infoPlace="{
+              date: '14/09/2020',
+              place: 'London',
+              time: '08:21PM',
+            }"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -44,3 +51,11 @@ export default {
   methods: {},
 };
 </script>
+
+<style scoped lang="scss">
+#weather-page {
+  position: absolute;
+  top: 200px;
+  max-width: 1824px;
+}
+</style>

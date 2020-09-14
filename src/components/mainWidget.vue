@@ -1,11 +1,10 @@
 <template>
-  <div class="tile is-4">
-    <div class="container has-text-centered">
-      <p>{{ infoToday.today }}</p>
-      <h1 class="title">
-        {{ infoToday.temperature }}
-      </h1>
-    </div>
+  <div class="container has-text-centered">
+    <p class="subtitle">{{ infoToday.day }}</p>
+    <img src="../assets/svg-icons/full-sun-icon.svg" />
+    <p class="title">
+      {{ infoToday.temperature }}
+    </p>
   </div>
 </template>
 
@@ -17,3 +16,20 @@ export default {
   },
 };
 </script>
+
+<style scoped lang="scss">
+img {
+  max-width: 175px;
+}
+p {
+  &.subtitle {
+    text-transform: uppercase;
+    font-size: 32px;
+    margin-bottom: 0px;
+  }
+  &.title {
+    font-size: 100px;
+    margin-top: -30px;
+  }
+}
+</style>
