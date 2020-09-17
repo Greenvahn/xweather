@@ -1,5 +1,5 @@
 <template>
-    <weather-page />
+  <weather-page />
 </template>
 
 <script>
@@ -23,11 +23,11 @@ export default {
 @import "scss/custom";
 @import "bulma";
 
+
 #app {
-  top:50%;
+  /* Vertically center*/
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  top: 50%;
+  transform: translateY(-50%);
 }
 </style>

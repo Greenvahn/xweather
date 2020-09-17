@@ -1,36 +1,50 @@
 <template>
-  <div id="weather-page" class="container is-fluid">
-    <div class="container wrapper">
-      <div class="main-panel">
-          <div class="logo-wrap"><logoWidget /></div>
-          <div class="mainWidget-wrap">
-            <MainWidget :infoToday="{ day: 'Today', temperature: '25°' }" />
+  <div id="mainSection" class="section">
+    <div class="container ">
+      <div class="columns">
+
+        <!-- Logo + Todays weather -->
+        <div id="first-col" class="column is-three-fifths-tablet is-two-thirds-desktop is-three-quarters-widescreen is-four-fifths-fullhd todays-panel">
+          <div class="columns">
+            <div class="logo-wrap column is-half-tablet is-two-thirds-desktop is-three-quarters-widescreen is-four-fifths-fullhd">
+              <logoWidget />
+            </div>
+            <div class="mainWidget-wrap column">
+              <MainWidget :infoToday="{ day: 'Today', temperature: '25°' }" />
+            </div>
           </div>
-      </div>
-      <div class="forecast-panel">
-        <div class="forecast--info">
-          <forecastWidget
-            :infoWeek="[
-              { day: 'Thu', temperature: '26°' },
-              { day: 'Fri', temperature: '22°' },
-              { day: 'Sat', temperature: '24°' },
-              { day: 'Sun', temperature: '26°' },
-            ]"
-          />
         </div>
-        <div class="forecast--place">
-          <geoWidget
-            :infoPlace="{
-              date: '14/09/2020',
-              place: 'London',
-              time: '08:21PM',
-            }"
-          />
+        <!-- // Logo + Todays weather -->
+
+        <!-- Forecast + button -->
+        <div id="second-col" class="column forecast-panel">
+          <div class="columns">
+            <div class="column forecast--info">
+              <forecastWidget
+                :infoWeek="[
+                  { day: 'Thu', temperature: '26°' },
+                  { day: 'Fri', temperature: '22°' },
+                  { day: 'Sat', temperature: '24°' },
+                  { day: 'Sun', temperature: '26°' },
+                ]"
+              />
+              <geoWidget
+                :infoPlace="{
+                  date: '14/09/2020',
+                  place: 'London',
+                  time: '08:21PM',
+                }"
+              />
+            </div>
+          </div>
         </div>
+        <!-- // Forecast + button -->
+
       </div>
     </div>
   </div>
 </template>
+
 <script>
 import MainWidget from "./mainWidget.vue";
 import forecastWidget from "./forecastWidget.vue";
@@ -51,11 +65,3 @@ export default {
   methods: {},
 };
 </script>
-
-<style scoped lang="scss">
-#weather-page {
-  position: absolute;
-  top: 200px;
-  max-width: 1824px;
-}
-</style>
