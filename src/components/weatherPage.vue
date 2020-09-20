@@ -2,9 +2,6 @@
   <div id="mainSection" class="section">
     <div class="container ">
       <div class="columns">
-<div>ID: {{dataAPI.weather[0].id}}</div>
-<div>MAIN: {{dataAPI.weather[0].main}}</div>
-<div>DESCRIPTION: {{dataAPI.weather[0].description}}</div>
         <!-- Logo + Todays weather -->
         <div id="first-col" class="column is-three-fifths-tablet is-two-thirds-desktop is-three-quarters-widescreen is-four-fifths-fullhd todays-panel">
           <div class="columns">
@@ -12,7 +9,7 @@
               <logoWidget />
             </div>
             <div class="mainWidget-wrap column">
-              <MainWidget :infoToday="{ day: 'Today', temperature: '25°' }" />
+              <MainWidget :infoToday="{ day: 'Today', temperature: `${Math.round(dataAPI.main.temp)}°`, description: dataAPI.weather[0].main}" />
             </div>
           </div>
         </div>
@@ -55,7 +52,9 @@ import logoWidget from "./logoWidget.vue";
 
 export default {
   name: "weatherPage",
-  props : ['dataAPI'],
+  props : {
+    dataAPI: Object
+  },
   components: {
     MainWidget,
     forecastWidget,
