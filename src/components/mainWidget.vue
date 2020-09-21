@@ -3,7 +3,7 @@
     <p class="subtitle">{{ infoToday.day }}</p>
     <img src="../assets/svg-icons/full-sun-icon.svg" />
     <p class="title">
-      {{ infoToday.temperature }}
+      {{ Math.round(infoToday.temperature) }}°
     </p>
     <p class="description">
       {{ infoToday.description }}

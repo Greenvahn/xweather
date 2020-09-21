@@ -9,7 +9,7 @@
               <logoWidget />
             </div>
             <div class="mainWidget-wrap column">
-              <MainWidget :infoToday="{ day: 'Today', temperature: `${Math.round(dataAPI.main.temp)}°`, description: dataAPI.weather[0].main}" />
+              <MainWidget :infoToday="{ day: 'Today', temperature: dataAPI.main.temp, description: dataAPI.weather[0].main}" />
             </div>
           </div>
         </div>
@@ -21,10 +21,10 @@
             <div class="column forecast--info">
               <forecastWidget
                 :infoWeek="[
-                  { day: 'Thu', temperature: '26°' },
-                  { day: 'Fri', temperature: '22°' },
-                  { day: 'Sat', temperature: '24°' },
-                  { day: 'Sun', temperature: '26°' },
+                  { day: 'Thu', temperature: dataAPI.main.temp },
+                  { day: 'Fri', temperature: dataAPI.main.temp },
+                  { day: 'Sat', temperature: dataAPI.main.temp },
+                  { day: 'Sun', temperature: dataAPI.main.temp },
                 ]"
               />
               <geoWidget

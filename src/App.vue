@@ -14,21 +14,21 @@ export default {
       data: {},
       city: "London",
       units: "metric",
-      API_KEY: "2ec37e86c3f6645fc6fa6cbd3f2eb4df",
-      type: "onecall"
+      API_KEY: "07dd487fb51c8fd64b7c189f26dcffa5",
+      type: "weather"
     };
   },
   created() {
-    this.getCurrentWeather(this.city, this.units, this.API_KEY, this.type);
+    this.getCurrentWeather();
   },
   methods: {
-    async getCurrentWeather(city, units, key, type) {
+    async getCurrentWeather() {
       const res = await fetch(
-        `https://api.openweathermap.org/data/2.5/${type}?q=${city}&units=${units}&APPID=${key}`
+        `https://api.openweathermap.org/data/2.5/${this.type}?q=${this.city}&units=${this.units}&APPID=${this.API_KEY}`
       );
       const data = await res.json();
       this.data = data;
-      console.log("DATA API -->", data);
+      console.warn("DATA API -->", data.message);
     }
   },
 };
