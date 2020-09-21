@@ -3,13 +3,32 @@
     <div class="container ">
       <div class="columns">
         <!-- Logo + Todays weather -->
-        <div id="first-col" class="column is-three-fifths-tablet is-two-thirds-desktop is-three-quarters-widescreen is-four-fifths-fullhd todays-panel">
+        <div
+          id="first-col"
+          class="column is-three-fifths-tablet is-two-thirds-desktop is-three-quarters-widescreen is-four-fifths-fullhd todays-panel"
+        >
           <div class="columns">
-            <div class="logo-wrap column is-half-tablet is-two-thirds-desktop is-three-quarters-widescreen is-four-fifths-fullhd">
+            <div
+              class="logo-wrap column is-half-tablet is-two-thirds-desktop is-three-quarters-widescreen is-four-fifths-fullhd"
+            >
               <logoWidget />
             </div>
             <div class="mainWidget-wrap column">
-              <MainWidget :infoToday="{ day: 'Today', temperature: dataAPI.main.temp, description: dataAPI.weather[0].main}" />
+              <MainWidget
+                :infoToday="{
+                  day: 'Today',
+                  temperature:
+                    (dataAPI.currentWeather &&
+                      dataAPI.currentWeather.main &&
+                      dataAPI.currentWeather.main.temp) ||
+                    'Loading...',
+                  description:
+                    (dataAPI.currentWeather &&
+                      dataAPI.currentWeather.weather &&
+                      dataAPI.currentWeather.weather[0].main) ||
+                    'Loading...',
+                }"
+              />
             </div>
           </div>
         </div>
@@ -19,14 +38,7 @@
         <div id="second-col" class="column forecast-panel">
           <div class="columns">
             <div class="column forecast--info">
-              <forecastWidget
-                :infoWeek="[
-                  { day: 'Thu', temperature: dataAPI.main.temp },
-                  { day: 'Fri', temperature: dataAPI.main.temp },
-                  { day: 'Sat', temperature: dataAPI.main.temp },
-                  { day: 'Sun', temperature: dataAPI.main.temp },
-                ]"
-              />
+              <forecastWidget :infoWeek="dataAPI.foreCast" />
               <geoWidget
                 :infoPlace="{
                   date: '14/09/2020',
@@ -38,7 +50,6 @@
           </div>
         </div>
         <!-- // Forecast + button -->
-
       </div>
     </div>
   </div>
@@ -52,8 +63,8 @@ import logoWidget from "./logoWidget.vue";
 
 export default {
   name: "weatherPage",
-  props : {
-    dataAPI: Object
+  props: {
+    dataAPI: Object,
   },
   components: {
     MainWidget,

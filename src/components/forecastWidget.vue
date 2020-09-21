@@ -3,9 +3,29 @@
     <div
       class="level-item has-text-centered"
       v-for="widget in infoWeek"
-      :key="widget"
+      :key="widget.dt"
     >
-      <MainWidget :infoToday="widget" class="is-foreCast" />
+      <MainWidget
+        :infoToday="{
+          day: 'Today',
+          temperature:
+            (widget &&
+              widget.main &&
+              widget.main.temp) ||
+            'Loading...',
+          description:
+            (widget &&
+              widget.weather &&
+              widget.weather[0].main) ||
+            'Loading...',
+          icon:  
+            (widget &&
+              widget.weather &&
+              widget.weather[0].icon) ||
+            'Loading...',
+        }"
+        class="is-foreCast"
+      />
     </div>
   </div>
 </template>
