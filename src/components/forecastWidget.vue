@@ -13,11 +13,6 @@
               widget.main &&
               widget.main.temp) ||
             'Loading...',
-          description:
-            (widget &&
-              widget.weather &&
-              widget.weather[0].main) ||
-            'Loading...',
           icon:  
             (widget &&
               widget.weather &&

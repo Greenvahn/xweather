@@ -5,7 +5,7 @@
     <p class="title">
       {{ Math.round(infoToday.temperature) }}°
     </p>
-    <p class="description">
+    <p v-if="infoToday.description" class="description">
       {{ infoToday.description }}
     </p>
   </div>

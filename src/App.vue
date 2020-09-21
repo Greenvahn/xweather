@@ -26,6 +26,8 @@ export default {
     this.foreCast();
   },
   methods: {
+    // FECTH API
+    // ===========================================
     // Get current weather - today
     async getCurrentWeather(){
       const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${this.city}&units=${this.units}&APPID=${this.API_KEY}`);
@@ -37,18 +39,17 @@ export default {
     async foreCast(){
       const res = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${this.city}&units=${this.units}&exclude=hourly,daily&APPID=${this.API_KEY}`);
       const data = await res.json();
-      
-      // Distribute the original list to have only 5 days
+
+      // Distribute the original list to have only 4 days - we stop array iteration at 24 ( 4th Day)
       // The endpoint gets the weather status each day at 15:00pm
       let sum = 0;
       data.list.forEach((item,index) => {
-        if (sum === index) {
-          console.log(index, item);
-          sum +=8;
+        if (sum === index && sum <= 24) {
           this.data.foreCast.push(item);
+          sum +=8;
         }
       })
-      console.log("API Data -->", this.data.foreCast)
+      // console.log("API Data -->", this.data.foreCast)
     }
   },
 };
