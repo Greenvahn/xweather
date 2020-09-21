@@ -3,7 +3,10 @@
     <p class="subtitle">{{ infoToday.day }}</p>
     <img src="../assets/svg-icons/full-sun-icon.svg" />
     <p class="title">
-      {{ infoToday.temperature }}
+      {{ Math.round(infoToday.temperature) }}°
+    </p>
+    <p v-if="infoToday.description" class="description">
+      {{ infoToday.description }}
     </p>
   </div>
 </template>
@@ -30,6 +33,12 @@ p {
   &.title {
     font-size: 100px;
     margin-top: -30px;
+    margin-bottom: 0px;
+  }
+  &.description {
+    text-transform: uppercase;
+    font-size: 22px;
+    font-weight: 100;
   }
 }
 </style>
