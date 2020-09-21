@@ -22,7 +22,7 @@ export default class GeoWidget {
     }
     getData() {
         const widgetObj = {}
-        widgetObj.location = this.location;
+        widgetObj.place = this.location;
         widgetObj.time = this.getTime();
         widgetObj.date = this.getDate();
         return widgetObj;

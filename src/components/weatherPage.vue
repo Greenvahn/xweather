@@ -41,9 +41,9 @@
               <forecastWidget :infoWeek="dataAPI.foreCast" />
               <geoWidget
                 :infoPlace="{
-                  date: '14/09/2020',
-                  place: 'London',
-                  time: '08:21PM',
+                  date: dataAPI.location.date,
+                  place: dataAPI.location.place,
+                  time: dataAPI.location.time,
                 }"
               />
             </div>

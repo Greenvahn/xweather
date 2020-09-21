@@ -38,6 +38,7 @@ export default {
   }
   .is-time {
     font-size: 16px;
+    text-transform: uppercase;
   }
 }
 </style>
