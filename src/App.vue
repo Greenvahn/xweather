@@ -3,7 +3,7 @@
 </template>
 <script>
 import weatherPage from "./components/weatherPage.vue";
-// import useFetch from "./composables/use-fetch.js";
+import geoWidget from "./composables/geowidgetTime.js";
 
 export default {
   name: "App",
@@ -14,7 +14,8 @@ export default {
     return {
       data: {
         currentWeather: null,
-        foreCast: []
+        foreCast: [],
+        location: null
       },
       city: "London",
       units: "metric",
@@ -24,6 +25,7 @@ export default {
   created() {
     this.getCurrentWeather();
     this.foreCast();
+    this.generateDataButton();
   },
   methods: {
     // FECTH API
@@ -50,7 +52,13 @@ export default {
         }
       })
       // console.log("API Data -->", this.data.foreCast)
+    },
+
+    generateDataButton () {
+      const newDataButton = new geoWidget(this.city);
+      this.data.location = newDataButton.getData();
     }
+
   },
 };
 </script>
