@@ -3,14 +3,13 @@ export default class fetchData {
   constructor(city, units){
       this.city = city;
       this.units = units;
-      this.key = '07dd487fb51c8fd64b7c189f26dcffa5';
+      this.key = process.env.VUE_APP_API_KEY;
   }
 
   // FECTH API
   // ===========================================
   // Get current weather - today
   getCurrentWeather = async () => {
-    console.log("API_KEY", this.key);
     const res = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${this.city}&units=${this.units}&APPID=${this.key}`
     );
