@@ -3,7 +3,7 @@ export default class fetchData {
   constructor(city, units){
       this.city = city;
       this.units = units;
-      this.key = process.env.VUE_APP_API_KEY;
+      this.key = atob(process.env.VUE_APP_API_KEY);
   }
 
   // FECTH API
