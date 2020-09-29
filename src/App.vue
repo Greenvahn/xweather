@@ -1,10 +1,11 @@
 <template>
-  <weather-page :data-API="data" @click="stopTimer()"/>
+  <weather-page :data-API="data" @click="stopTimer()" />
 </template>
 <script>
 import weatherPage from "./components/weatherPage.vue";
 import geoWidget from "./composables/geowidgetTime.js";
 import fetchData from "./composables/fetchData.js";
+import getDay from "./composables/widgetDay.js";
 
 export default {
   name: "App",
@@ -20,7 +21,7 @@ export default {
         timer: "",
       },
       city: "London",
-      units: "metric"
+      units: "metric",
     };
   },
   created() {
@@ -36,15 +37,24 @@ export default {
     // FECTH API
     // ===========================================
     // Get current weather - today
-    genearateDataWeather () {
+    genearateDataWeather() {
       const newWeather = new fetchData(this.city, this.units);
       // --> Get current weather
-      newWeather.getCurrentWeather().then((data)=>{
-         this.data.currentWeather = data;
+      newWeather.getCurrentWeather().then((data) => {
+        this.data.currentWeather = data;
       });
       // --> Get foreCast
-      newWeather.getforeCast().then((data)=>{
-         this.data.foreCast = data;
+      newWeather.getforeCast().then((data) => {
+        // Computed data
+        // Generate weekdays into the main forecast data
+        // * Uses getDay function ( widgetDay.js ) to convert the date given into weekdays
+        // ** Sample : 2020-09-30 21:00:00 --> Wednesday
+        data.forEach((item) => {
+          item.weekday = getDay(item.dt_txt);
+        });
+        // Define final data.Forecast
+        this.data.foreCast = data;
+        console.log("FORECAST", data);
       });
     },
 
@@ -68,8 +78,8 @@ export default {
     },
     stopTimer() {
       clearInterval(this.data.location.time);
-    }
-  }
+    },
+  },
 };
 </script>
 

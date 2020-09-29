@@ -14,8 +14,6 @@ export default class fetchData {
       `https://api.openweathermap.org/data/2.5/weather?q=${this.city}&units=${this.units}&APPID=${this.key}`
     );
     const data = await res.json();
-    // this.data.currentWeather = data;
-    // console.log("API Data -->", this.data.currentWeather)
     return data;
   };
   // Get forecast for next 4 days
@@ -25,12 +23,17 @@ export default class fetchData {
     );
     const data = await res.json();
 
-    // Distribute the original list to have only 4 days - we stop array iteration at 24 ( 4th Day)
+    // === Openweather API 
+    // Distribute the original list to have only 4 days
+    // * we start the iteration at 8 ( sum = 8 ) - we skip first day (Today / let sum = 8)
+    // * we stop array iteration at 32 ( 5th Day / sum <= 32)
+    // * Iteration as follows :
+    // ** 0 = today / 8 = second day / 16 = third day / 24 = fourth day / 32 = fith day
     // The endpoint gets the weather status each day at 15:00pm
-    let sum = 0;
+    let sum = 8;
     const foreCastOutput= [];
     data.list.forEach((item, index) => {
-      if (sum === index && sum <= 24) {
+      if (sum === index && sum <= 32) {
         //this.data.foreCast.push(item);
         foreCastOutput.push(item)
         sum += 8;

@@ -7,7 +7,7 @@
     >
       <MainWidget
         :infoToday="{
-          day: 'Today',
+          day: widget.weekday,
           temperature:
             (widget &&
               widget.main &&
