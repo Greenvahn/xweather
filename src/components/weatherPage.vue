@@ -3,7 +3,7 @@
     name="fade"
   >
   <modalSearch v-show="modalOn" 
-  @modal-on-off="showModal()" />
+  @modal-on-off="showModal()"/>
 </transition>
   <div id="mainSection" class="section">
     <div class="container ">
