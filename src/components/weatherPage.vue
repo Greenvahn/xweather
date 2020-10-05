@@ -1,4 +1,5 @@
 <template>
+  <modalSearch :modal-Data="modalOn" />
   <div id="mainSection" class="section">
     <div class="container ">
       <div class="columns">
@@ -60,6 +61,7 @@ import MainWidget from "./mainWidget.vue";
 import forecastWidget from "./forecastWidget.vue";
 import geoWidget from "./geoWidget.vue";
 import logoWidget from "./logoWidget.vue";
+import modalSearch from "./modal-search.vue";
 
 export default {
   name: "weatherPage",
@@ -71,9 +73,12 @@ export default {
     forecastWidget,
     geoWidget,
     logoWidget,
+    modalSearch,
   },
   data() {
-    return {};
+    return {
+      modalOn: true,
+    };
   },
   methods: {},
 };

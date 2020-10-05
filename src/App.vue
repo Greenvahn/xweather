@@ -86,11 +86,10 @@ export default {
 <style lang="scss">
 @import "scss/custom";
 @import "bulma";
-
 #app {
-  /* Vertically center*/
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
 }
 </style>
