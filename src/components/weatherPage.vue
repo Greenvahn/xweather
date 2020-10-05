@@ -1,6 +1,6 @@
 <template>
 <transition
-    name="fadeInUp"
+    name="fade"
   >
   <modalSearch v-show="modalOn" 
   @modal-on-off="showModal()" />
@@ -93,3 +93,22 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.fade-enter-active {
+  animation: fade-in 0.3s;
+}
+.fade-leave-active {
+  animation: fade-in 0.5s reverse;
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateX(-200px)
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px)
+  }
+}
+</style>
