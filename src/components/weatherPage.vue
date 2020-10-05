@@ -1,5 +1,6 @@
 <template>
-  <modalSearch :modal-Data="modalOn" />
+  <modalSearch :modal-Data="modalOn" 
+  @modal-on-off="showModal()" />
   <div id="mainSection" class="section">
     <div class="container ">
       <div class="columns">
@@ -46,6 +47,7 @@
                   place: dataAPI.location.place,
                   time: dataAPI.location.time,
                 }"
+                @click="showModal()"
               />
             </div>
           </div>
@@ -77,9 +79,13 @@ export default {
   },
   data() {
     return {
-      modalOn: true,
+      modalOn: false,
     };
   },
-  methods: {},
+  methods: {
+    showModal() {
+      this.modalOn ? (this.modalOn = false) : this.modalOn = true; 
+    }
+  },
 };
 </script>

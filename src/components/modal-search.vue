@@ -1,5 +1,5 @@
 <template>
-  <div class="modal" :class="{ isActive: tempModalData }">
+  <div class="modal" :class="{ isActive: modalData }">
     <div class="modal-background"></div>
     <div class="modal-card">
       <header class="modal-card-head">
@@ -7,7 +7,7 @@
         <button
           class="delete"
           aria-label="close"
-          @click="closeModal()"
+          @click="$emit('modal-on-off')"
         ></button>
       </header>
       <section class="modal-card-body">
@@ -25,17 +25,9 @@ export default {
     modalData: Boolean,
   },
   data() {
-    return {
-      tempModalData: this.modalData,
-    };
+    return {};
   },
-  methods: {
-    closeModal() {
-      if (this.modalData) {
-        this.tempModalData = false;
-      }
-    },
-  },
+  methods: {},
 };
 </script>
 
