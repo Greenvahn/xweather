@@ -1,6 +1,10 @@
 <template>
-  <modalSearch :modal-Data="modalOn" 
+<transition
+    name="fadeInUp"
+  >
+  <modalSearch v-show="modalOn" 
   @modal-on-off="showModal()" />
+</transition>
   <div id="mainSection" class="section">
     <div class="container ">
       <div class="columns">

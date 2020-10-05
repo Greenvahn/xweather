@@ -1,21 +1,16 @@
 <template>
-  <div class="modal" :class="{ isActive: modalData }">
-    <div class="modal-background"></div>
-    <div class="modal-card">
-      <header class="modal-card-head">
-        <p class="modal-card-title">Input the city name</p>
-        <button
-          class="delete"
-          aria-label="close"
-          @click="$emit('modal-on-off')"
-        ></button>
-      </header>
-      <section class="modal-card-body">
-        <!-- Content ... -->
-        <p>Search bar goes here</p>
-      </section>
+  <section id="searchBar" class="section">
+    <!-- Content ... -->
+    <div class="field">
+      <div class="control">
+        <input class="input is-large" type="text" placeholder="Input the city name" />
+      </div>
     </div>
-  </div>
+    <button
+      aria-label="close"
+      @click="$emit('modal-on-off')"
+    >BACK</button>
+  </section>
 </template>
 
 <script>
@@ -32,58 +27,13 @@ export default {
 </script>
 
 <style lang="scss">
-.modal.isActive {
-  display: flex;
-  animation: scaleIn 0.3s ease-in-out;
-
-  .modal-background {
-    background-color: rgba(10, 10, 10, 0.4);
-  }
-
-  .p-title {
-    font-size: 1.4em;
-    margin: 0px;
-    padding: 5px;
-  }
-  .p-subtitle {
-    font-size: 1em;
-    font-weight: bold;
-    margin: 25px 0px 10px 0px;
-  }
-
-  .btn-wrap {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-
-    width: 100%;
-    .modal-btn {
-      min-width: 60px;
-      margin: 10 50%;
-    }
-  }
-
-  .message-header {
-    justify-content: flex-start;
-
-    .file-icon {
-      margin-right: 10px;
-    }
-  }
-}
-
-@keyframes scaleIn {
-  0% {
-    opacity: 0;
-    transform: scale(1);
-  }
-  66% {
-    opacity: 0.6;
-    transform: scale(1.2);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
+#searchBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.9);
 }
 </style>
