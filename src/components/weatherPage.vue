@@ -1,10 +1,4 @@
 <template>
-<transition
-    name="fade"
-  >
-  <modalSearch v-show="modalOn" 
-  @modal-on-off="showModal()"/>
-</transition>
   <div id="mainSection" class="section">
     <div class="container ">
       <div class="columns">
@@ -51,7 +45,7 @@
                   place: dataAPI.location.place,
                   time: dataAPI.location.time,
                 }"
-                @click="showModal()"
+                @click="$emit('modal-on-off')"
               />
             </div>
           </div>
@@ -67,7 +61,6 @@ import MainWidget from "./mainWidget.vue";
 import forecastWidget from "./forecastWidget.vue";
 import geoWidget from "./geoWidget.vue";
 import logoWidget from "./logoWidget.vue";
-import modalSearch from "./modal-search.vue";
 
 export default {
   name: "weatherPage",
@@ -79,7 +72,6 @@ export default {
     forecastWidget,
     geoWidget,
     logoWidget,
-    modalSearch,
   },
   data() {
     return {
@@ -88,27 +80,8 @@ export default {
   },
   methods: {
     showModal() {
-      this.modalOn ? (this.modalOn = false) : this.modalOn = true; 
-    }
+      this.modalOn ? (this.modalOn = false) : (this.modalOn = true);
+    },
   },
 };
 </script>
-
-<style lang="scss">
-.fade-enter-active {
-  animation: fade-in 0.3s;
-}
-.fade-leave-active {
-  animation: fade-in 0.5s reverse;
-}
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-    transform: translateX(-200px)
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0px)
-  }
-}
-</style>

@@ -1,17 +1,17 @@
 <template>
   <section id="searchBar" class="section">
     <!-- Content ... -->
-    <form @submit.prevent="updateValue">
+    <form @submit.prevent="$emit('load-new-place')">
       <label for="search" class="hidden-visually">Search: </label>
       <input
         class="input is-large"
         type="text"
         name="search"
-        id="search"
         placeholder="Input your city"
-        v-model="newPlace"
+        :value="newCity"
+        @input="(event) => $emit('update:newCity', event.target.value)"
       />
-      <button v-show="newPlace" class="button is-normal">
+      <button v-show="newCity" class="button is-normal">
         Search
       </button>
     </form>
@@ -23,11 +23,13 @@
 import { ref } from "vue";
 
 export default {
+  props: ["newCity"],
   setup() {
     const newPlace = ref("");
 
     function updateValue() {
-      console.log("The value has been updated as", newPlace.value);
+      //  console.log("The value has been updated as", newCity);
+      // this.$emit('new-city', newPlace.value)
     }
     return {
       newPlace,
