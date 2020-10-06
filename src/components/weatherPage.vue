@@ -45,6 +45,7 @@
                   place: dataAPI.location.place,
                   time: dataAPI.location.time,
                 }"
+                @click="$emit('modal-on-off')"
               />
             </div>
           </div>
@@ -73,8 +74,14 @@ export default {
     logoWidget,
   },
   data() {
-    return {};
+    return {
+      modalOn: false,
+    };
   },
-  methods: {},
+  methods: {
+    showModal() {
+      this.modalOn ? (this.modalOn = false) : (this.modalOn = true);
+    },
+  },
 };
 </script>

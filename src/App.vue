@@ -1,7 +1,20 @@
 <template>
-  <weather-page :data-API="data" @click="stopTimer()" />
+  <transition name="fade">
+    <modalSearch
+      v-show="modalOn"
+      @modal-on-off="showModal()"
+      @load-new-place="loadNewPlace()"
+      v-model:newCity="city"
+    />
+  </transition>
+  <weather-page
+    :data-API="data"
+    @click="stopTimer()"
+    @modal-on-off="showModal()"
+  />
 </template>
 <script>
+import modalSearch from "./components/modal-search.vue";
 import weatherPage from "./components/weatherPage.vue";
 import geoWidget from "./composables/geowidgetTime.js";
 import fetchData from "./composables/fetchData.js";
@@ -11,6 +24,7 @@ export default {
   name: "App",
   components: {
     weatherPage,
+    modalSearch,
   },
   data() {
     return {
@@ -22,6 +36,7 @@ export default {
       },
       city: "London",
       units: "metric",
+      modalOn: false,
     };
   },
   created() {
@@ -79,6 +94,18 @@ export default {
     stopTimer() {
       clearInterval(this.data.location.time);
     },
+
+    // MODAL - SEARCH BAR
+    // ===========================================
+    // --> show / hide search bar
+    showModal() {
+      this.modalOn ? (this.modalOn = false) : (this.modalOn = true);
+    },
+    loadNewPlace() {
+      this.showModal();
+      this.genearateDataWeather();
+      this.generateDataButton();
+    },
   },
 };
 </script>
@@ -86,11 +113,26 @@ export default {
 <style lang="scss">
 @import "scss/custom";
 @import "bulma";
-
 #app {
-  /* Vertically center*/
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+.fade-enter-active {
+  animation: fade-in 0.3s;
+}
+.fade-leave-active {
+  animation: fade-in 0.5s reverse;
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
 }
 </style>
