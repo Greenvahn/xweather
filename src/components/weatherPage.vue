@@ -44,6 +44,9 @@
                   date: dataAPI.location.date,
                   place: dataAPI.location.place,
                   time: dataAPI.location.time,
+                  timezone: dataAPI.timezone,
+                  country: dataAPI.country,
+                  utc: dataAPI.utc,
                 }"
                 @click="$emit('modal-on-off')"
               />

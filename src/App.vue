@@ -32,9 +32,11 @@ export default {
         currentWeather: null,
         foreCast: [],
         location: null,
+        timezone: false,
+        utc: false,
+        country: null
       },
       city: "London",
-      timezone: false,
       units: "metric",
       modalOn: false,
     };
@@ -56,7 +58,9 @@ export default {
       // --> Get current weather
       newWeather.getCurrentWeather().then((data) => {
         this.data.currentWeather = data;
-        this.timezone = data.timezone;
+        this.data.timezone = data.timezone;
+        this.data.country = data.sys.country;
+        // console.log("DATA", data)
       });
       // --> Get foreCast
       newWeather.getforeCast().then((data) => {
@@ -69,7 +73,7 @@ export default {
         });
         // Define final data.Forecast
         this.data.foreCast = data;
-        console.log("FORECAST", data);
+        // console.log("FORECAST", data);
       });
     },
 
@@ -77,8 +81,9 @@ export default {
     // ===========================================
     generateDataButton() {
       // Generate initial Data button
-      const newDataButton = new geoWidget(this.city, this.timezone);
+      const newDataButton = new geoWidget(this.city, this.data.timezone);
       this.data.location = newDataButton.getData();
+      this.data.utc = newDataButton.timezoneToHours(this.data.timezone)._UTC;
 
       // Init timer update
       this.updateTime();
@@ -87,8 +92,9 @@ export default {
     // --> Refresh time
     updateTime() {
       setInterval(() => {
-        const newDataButton = new geoWidget(this.city, this.timezone);
+        const newDataButton = new geoWidget(this.city, this.data.timezone);
         this.data.location.time = newDataButton.getTime();
+        this.data.utc = newDataButton.timezoneToHours(this.data.timezone)._UTC;
       }, 1000);
     },
     stopTimer() {
@@ -104,7 +110,6 @@ export default {
     loadNewPlace() {
       this.showModal();
       this.genearateDataWeather();
-      // console.log("Load new place --> timezon is ", this.data.currentWeather.timezone)
       this.generateDataButton(); // Loads new place data in UTC
     },
   },

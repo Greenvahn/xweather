@@ -13,10 +13,20 @@ export default class GeoWidget {
     const fullDate = `${date.getUTCDate()}/${currentMonth}/${date.getUTCFullYear()}`;
     return fullDate;
   }
-  localTime(obj) {
-    obj.hours = this.date.getHours();
-    obj.minutes = this.date.getMinutes();
-    return obj;
+  timezoneToHours(timezone) {
+    let _rawHours = Math.round(timezone / 3600);
+    let _formattedHours;
+
+    // Check _rawHours is negative or positive number
+    // * Creates sign variable "-" / "+"
+    // * Converts _formattedHours into positive number to use in _UTC
+    let _sign = Math.sign(_rawHours);
+    _sign === 1 || _sign === 0
+      ? ((_sign = "+"), (_formattedHours = _rawHours)) // positive number
+      : ((_sign = "-"), (_formattedHours = _rawHours * -1)); // negative number --> positive number
+
+    let _UTC = `UTC${_sign}0${_formattedHours}:00`;
+    return { _rawHours, _UTC };
   }
   getTime() {
     // Gets the base UTC ( Universal time)
@@ -28,9 +38,9 @@ export default class GeoWidget {
     // *** offset => (timezone miliseconds / 3600) => +hours
     // ** If !timezone => UTC --> user's time
     this.timezone
-      ? (hours = hours + Math.round(this.timezone / 3600)) 
-      : (hours = this.localTime({ hours, minutes }).hours);
-    minutes = this.localTime({ hours, minutes }).minutes;
+      ? (hours = hours + this.timezoneToHours(this.timezone)._rawHours)
+      : (hours = this.hours);
+    minutes = this.minutes;
 
     // Time --> PM or AM
     const ampm = hours >= 12 ? "pm" : "am";

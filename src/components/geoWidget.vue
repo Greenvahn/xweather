@@ -1,8 +1,14 @@
 <template>
   <button class="button is-medium">
-      <p class="is-date">{{ infoPlace.date }}</p>
-      <h2 class="is-title">{{ infoPlace.place }}</h2>
-      <p class="is-time">{{ infoPlace.time }}</p>
+    <p class="is-date">{{ infoPlace.date }}</p>
+    <h2 class="is-title">
+      {{ infoPlace.place }}
+    </h2>
+    <p class="is-time">
+      {{ infoPlace.time }}
+      <span class="is-utc" v-if="infoPlace.utc"> | {{ infoPlace.utc }} </span>
+      <span class="is-country" v-if="infoPlace.country"> | {{ infoPlace.country }} </span>
+    </p>
   </button>
 </template>
 
@@ -37,8 +43,12 @@ export default {
     text-transform: uppercase;
   }
   .is-time {
-    font-size: 16px;
+    font-size: 18px;
     text-transform: uppercase;
+  }
+  .is-utc, .is-country {
+    opacity: 0.5;
+    font-size: 16px;
   }
 }
 </style>
