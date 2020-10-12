@@ -32,9 +32,9 @@ export default {
         currentWeather: null,
         foreCast: [],
         location: null,
-        timer: "",
       },
       city: "London",
+      timezone: false,
       units: "metric",
       modalOn: false,
     };
@@ -42,7 +42,6 @@ export default {
   created() {
     this.genearateDataWeather();
     this.generateDataButton();
-    //this.location = this.timer;
   },
   mounted() {
     // const newDataButton = new geoWidget(this.city);
@@ -57,6 +56,7 @@ export default {
       // --> Get current weather
       newWeather.getCurrentWeather().then((data) => {
         this.data.currentWeather = data;
+        this.timezone = data.timezone;
       });
       // --> Get foreCast
       newWeather.getforeCast().then((data) => {
@@ -77,17 +77,17 @@ export default {
     // ===========================================
     generateDataButton() {
       // Generate initial Data button
-      const newDataButton = new geoWidget(this.city);
+      const newDataButton = new geoWidget(this.city, this.timezone);
       this.data.location = newDataButton.getData();
 
-      // Initi timer update
+      // Init timer update
       this.updateTime();
     },
 
     // --> Refresh time
     updateTime() {
       setInterval(() => {
-        const newDataButton = new geoWidget(this.city);
+        const newDataButton = new geoWidget(this.city, this.timezone);
         this.data.location.time = newDataButton.getTime();
       }, 1000);
     },
@@ -104,7 +104,8 @@ export default {
     loadNewPlace() {
       this.showModal();
       this.genearateDataWeather();
-      this.generateDataButton();
+      // console.log("Load new place --> timezon is ", this.data.currentWeather.timezone)
+      this.generateDataButton(); // Loads new place data in UTC
     },
   },
 };
