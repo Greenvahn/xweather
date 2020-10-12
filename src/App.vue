@@ -32,7 +32,9 @@ export default {
         currentWeather: null,
         foreCast: [],
         location: null,
-        timer: "",
+        timezone: false,
+        utc: false,
+        country: null
       },
       city: "London",
       units: "metric",
@@ -42,7 +44,6 @@ export default {
   created() {
     this.genearateDataWeather();
     this.generateDataButton();
-    //this.location = this.timer;
   },
   mounted() {
     // const newDataButton = new geoWidget(this.city);
@@ -57,6 +58,9 @@ export default {
       // --> Get current weather
       newWeather.getCurrentWeather().then((data) => {
         this.data.currentWeather = data;
+        this.data.timezone = data.timezone;
+        this.data.country = data.sys.country;
+        // console.log("DATA", data)
       });
       // --> Get foreCast
       newWeather.getforeCast().then((data) => {
@@ -69,7 +73,7 @@ export default {
         });
         // Define final data.Forecast
         this.data.foreCast = data;
-        console.log("FORECAST", data);
+        // console.log("FORECAST", data);
       });
     },
 
@@ -77,18 +81,20 @@ export default {
     // ===========================================
     generateDataButton() {
       // Generate initial Data button
-      const newDataButton = new geoWidget(this.city);
+      const newDataButton = new geoWidget(this.city, this.data.timezone);
       this.data.location = newDataButton.getData();
+      this.data.utc = newDataButton.timezoneToHours(this.data.timezone)._UTC;
 
-      // Initi timer update
+      // Init timer update
       this.updateTime();
     },
 
     // --> Refresh time
     updateTime() {
       setInterval(() => {
-        const newDataButton = new geoWidget(this.city);
+        const newDataButton = new geoWidget(this.city, this.data.timezone);
         this.data.location.time = newDataButton.getTime();
+        this.data.utc = newDataButton.timezoneToHours(this.data.timezone)._UTC;
       }, 1000);
     },
     stopTimer() {
@@ -104,7 +110,7 @@ export default {
     loadNewPlace() {
       this.showModal();
       this.genearateDataWeather();
-      this.generateDataButton();
+      this.generateDataButton(); // Loads new place data in UTC
     },
   },
 };
