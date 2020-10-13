@@ -42,7 +42,7 @@ export default {
     };
   },
   created() {
-    this.genearateDataWeather();
+    this.generateDataWeather();
     this.generateDataButton();
   },
   mounted() {
@@ -53,7 +53,7 @@ export default {
     // FECTH API
     // ===========================================
     // Get current weather - today
-    genearateDataWeather() {
+    generateDataWeather() {
       const newWeather = new fetchData(this.city, this.units);
       // --> Get current weather
       newWeather.getCurrentWeather().then((data) => {
@@ -109,7 +109,7 @@ export default {
     },
     loadNewPlace() {
       this.showModal();
-      this.genearateDataWeather();
+      this.generateDataWeather();
       this.generateDataButton(); // Loads new place data in UTC
     },
   },
