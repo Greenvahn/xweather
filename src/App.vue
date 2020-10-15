@@ -4,7 +4,7 @@
       v-show="modalOn"
       @modal-on-off="showModal()"
       @load-new-place="loadNewPlace()"
-      v-model:newCity="city"
+      v-model:newCity.lazy="city"
     />
   </transition>
   <weather-page
@@ -34,10 +34,11 @@ export default {
         location: null,
         timezone: false,
         utc: false,
-        country: null
+        country: null,
       },
       city: "London",
       units: "metric",
+      statusRequest: null,
       modalOn: false,
     };
   },
@@ -57,10 +58,22 @@ export default {
       const newWeather = new fetchData(this.city, this.units);
       // --> Get current weather
       newWeather.getCurrentWeather().then((data) => {
-        this.data.currentWeather = data;
-        this.data.timezone = data.timezone;
-        this.data.country = data.sys.country;
-        // console.log("DATA", data)
+        // To be removed - console error listener
+        console.log("DATA", data)
+        if (data.cod === 200) {
+          console.log("API STATUS: "+ data.cod +" - OK");
+        }
+
+        if (data.cod === "404") {
+          console.log("API STATUS: "+ data.cod +" - Not found");
+          this.statusRequest = Number(data.cod); 
+          return false;
+        }
+
+        this.statusRequest = data.cod; // Get status request from API
+        this.data.currentWeather = data; // Get current weather data
+        this.data.timezone = data.timezone; // Get timezone
+        this.data.country = data.sys.country; // Get country
       });
       // --> Get foreCast
       newWeather.getforeCast().then((data) => {

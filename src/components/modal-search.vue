@@ -1,7 +1,7 @@
 <template>
   <section id="searchBar" class="section">
     <!-- Content ... -->
-    <form @submit.prevent="$emit('load-new-place')">
+    <form @submit.prevent="emitValue()">
       <label for="search" class="hidden-visually">Search: </label>
       <input
         class="input is-large"
@@ -20,20 +20,45 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { reactive } from "vue";
 
 export default {
-  props: ["newCity"],
-  setup() {
-    const newPlace = ref("");
+  props: {
+    newCity: String,
+  },
 
-    function updateValue() {
-      //  console.log("The value has been updated as", newCity);
-      // this.$emit('new-city', newPlace.value)
+  // Composition API - vue 3
+  // ======================================
+  // The second argument passed to the setup function is the context.
+  // The context is a normal JavaScript object that exposes three component properties:
+  // attrs, slots, emit
+  // it is not reactive, this means you can safely use ES6 destructuring on context.
+  // context = { attrs, slots, emit }
+  setup(props, { emit }) {
+    let errors = reactive([]);
+
+    function emitValue() {
+      if (!checkCity(props, errors)) {
+        console.log("validation goes here", errors[0]);
+      } else {
+        emit("load-new-place");
+      }
     }
+
+    const checkCity = (props, errors) => {
+      if (!props.newCity) {
+        errors.push("City or location is required");
+        return false
+      } else if (!isNaN(props.newCity)) {
+        errors.push("You typed a number");
+        return false;
+      } else {
+        return true;
+      }
+    };
+
     return {
-      newPlace,
-      updateValue,
+      emitValue,
     };
   },
 };
