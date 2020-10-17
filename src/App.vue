@@ -5,6 +5,7 @@
       @modal-on-off="showModal()"
       @load-new-place="loadNewPlace()"
       v-model:newCity.lazy="city"
+      :status-API="error"
     />
   </transition>
   <weather-page
@@ -38,17 +39,18 @@ export default {
       },
       city: "London",
       units: "metric",
-      statusRequest: null,
       modalOn: false,
+      init: true,
+      error: {
+        isOn: false,
+        code: null,
+        message: null,
+      },
     };
   },
   created() {
     this.generateDataWeather();
     this.generateDataButton();
-  },
-  mounted() {
-    // const newDataButton = new geoWidget(this.city);
-    // this.data.location = window.setInterval(newDataButton.getData(), 1000);
   },
   methods: {
     // FECTH API
@@ -58,23 +60,38 @@ export default {
       const newWeather = new fetchData(this.city, this.units);
       // --> Get current weather
       newWeather.getCurrentWeather().then((data) => {
-        // To be removed - console error listener
-        console.log("DATA", data)
+         console.log("DATA", data);
+
         if (data.cod === 200) {
-          console.log("API STATUS: "+ data.cod +" - OK");
+          // DATA GET
+          this.data.currentWeather = data; // Get current weather data
+          this.data.timezone = data.timezone; // Get timezone
+          this.data.country = data.sys.country; // Get country
+
+          // ERROR STATUS
+          this.error.isOn = false; // Updates error status --> false
+          this.error.code = Number(data.cod); // Adds API status code
+          console.log(`%cAPI STATUS: ${data.cod} - OK`, `color:green`);
+
+          // MODAL STATUS
+          // * Show the modal-search on API status 200
+          // * Blocks the modal-search on first launch
+          this.init ? (this.init = false) : this.showModal();
         }
 
-        if (data.cod === "404") {
-          console.log("API STATUS: "+ data.cod +" - Not found");
-          this.statusRequest = Number(data.cod); 
-          return false;
+        if (data.cod === "400") {
+          this.error.code = Number(data.cod); // Adds API status code
+          this.error.isOn = true; // Updates error status --> true
+          console.log(
+            `%cAPI STATUS: ${data.cod} - City not found`,
+            `color:red`
+          );
         }
 
-        this.statusRequest = data.cod; // Get status request from API
-        this.data.currentWeather = data; // Get current weather data
-        this.data.timezone = data.timezone; // Get timezone
-        this.data.country = data.sys.country; // Get country
+        // // Validates API request - updates error status - on: false/true
+        // this.validateData(data.cod);
       });
+
       // --> Get foreCast
       newWeather.getforeCast().then((data) => {
         // Computed data
@@ -114,14 +131,13 @@ export default {
       clearInterval(this.data.location.time);
     },
 
-    // MODAL - SEARCH BAR
-    // ===========================================
-    // --> show / hide search bar
+    // MODAL - SEARCH BAR --> show/hide
     showModal() {
       this.modalOn ? (this.modalOn = false) : (this.modalOn = true);
     },
+
+    // load new place --> emit from modal-search.vue
     loadNewPlace() {
-      this.showModal();
       this.generateDataWeather();
       this.generateDataButton(); // Loads new place data in UTC
     },

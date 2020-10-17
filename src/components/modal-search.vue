@@ -20,11 +20,12 @@
 </template>
 
 <script>
-import { reactive } from "vue";
+// import { reactive } from "vue";
 
 export default {
   props: {
     newCity: String,
+    statusAPI: Object,
   },
 
   // Composition API - vue 3
@@ -35,26 +36,10 @@ export default {
   // it is not reactive, this means you can safely use ES6 destructuring on context.
   // context = { attrs, slots, emit }
   setup(props, { emit }) {
-    let errors = reactive([]);
+    // let message = reactive("");
 
-    function emitValue() {
-      if (!checkCity(props, errors)) {
-        console.log("validation goes here", errors[0]);
-      } else {
-        emit("load-new-place");
-      }
-    }
-
-    const checkCity = (props, errors) => {
-      if (!props.newCity) {
-        errors.push("City or location is required");
-        return false
-      } else if (!isNaN(props.newCity)) {
-        errors.push("You typed a number");
-        return false;
-      } else {
-        return true;
-      }
+    const emitValue = () => {
+      emit("load-new-place")
     };
 
     return {
