@@ -21,9 +21,7 @@ export default class GeoWidget {
     if (this.computedTimeParams) {
       let _compHours = this.computedTimeParams.h;
       let _currentUTCDate = date.getUTCDate();
-      _compHours > 23
-        ? (_currentUTCDate++)
-        : (_compHours, _currentUTCDate);
+      _compHours > 23 ? _currentUTCDate++ : _compHours;
 
       fullDate = `${_currentUTCDate}/${currentMonth}/${date.getFullYear()}`;
     }
