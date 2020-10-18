@@ -3,8 +3,9 @@
     <modalSearch
       v-show="modalOn"
       @modal-on-off="showModal()"
-      @load-new-place="loadNewPlace()"
-      v-model:newCity="city"
+      @data-get="generateDataWeather()"
+      v-model:newCity.lazy="city"
+      :status-API="error"
     />
   </transition>
   <weather-page
@@ -34,35 +35,68 @@ export default {
         location: null,
         timezone: false,
         utc: false,
-        country: null
+        country: null,
       },
       city: "London",
       units: "metric",
       modalOn: false,
+      init: true,
+      error: {
+        isOn: false,
+        code: null,
+        message: null,
+      },
     };
   },
   created() {
     this.generateDataWeather();
     this.generateDataButton();
   },
-  mounted() {
-    // const newDataButton = new geoWidget(this.city);
-    // this.data.location = window.setInterval(newDataButton.getData(), 1000);
-  },
   methods: {
     // FECTH API
     // ===========================================
-    // Get current weather - today
+    // GENERATE DATA WEATHER
     generateDataWeather() {
       const newWeather = new fetchData(this.city, this.units);
-      // --> Get current weather
+
+      // --> CURRENT WEATHER --> TODAY
       newWeather.getCurrentWeather().then((data) => {
-        this.data.currentWeather = data;
-        this.data.timezone = data.timezone;
-        this.data.country = data.sys.country;
-        // console.log("DATA", data)
+        console.log("DATA", data);
+
+        if (data.cod === 200) {
+          // DATA GET 
+          // * Today's weather
+          this.data.currentWeather = data; // Get current weather data
+          this.data.timezone = data.timezone; // Get timezone
+          this.data.country = data.sys.country; // Get country
+
+          // * Generate data button 
+          // this.generateDataButton(); // Loads new place data in UTC
+
+          // ERROR STATUS
+          this.error.isOn = false; // Updates error status --> false
+          this.error.code = Number(data.cod); // Adds API status code
+          console.log(`%cAPI STATUS: ${data.cod} - OK`, `color:green`);
+
+          // MODAL STATUS
+          // * Show the modal-search on API status 200
+          // * Blocks the modal-search on first launch
+          // * Blocks the generateDataButton on first launch => Called at created()
+          this.init ? (this.init = false) : this.showModal(), this.generateDataButton();
+        }
+
+        if (data.cod === "404") {
+          this.error.code = Number(data.cod); // Adds API status code
+          this.error.isOn = true; // Updates error status --> true
+          this.error.message = `${data.cod} - City not found`;
+          console.log(
+            `%cAPI STATUS: ${data.cod} - City not found`,
+            `color:red`
+          );
+        }
       });
-      // --> Get foreCast
+
+      // --> FORECAST WEATHER
       newWeather.getforeCast().then((data) => {
         // Computed data
         // Generate weekdays into the main forecast data
@@ -83,6 +117,7 @@ export default {
       // Generate initial Data button
       const newDataButton = new geoWidget(this.city, this.data.timezone);
       this.data.location = newDataButton.getData();
+
       this.data.utc = newDataButton.timezoneToHours(this.data.timezone)._UTC;
 
       // Init timer update
@@ -101,17 +136,10 @@ export default {
       clearInterval(this.data.location.time);
     },
 
-    // MODAL - SEARCH BAR
-    // ===========================================
-    // --> show / hide search bar
+    // MODAL - SEARCH BAR --> show/hide
     showModal() {
       this.modalOn ? (this.modalOn = false) : (this.modalOn = true);
-    },
-    loadNewPlace() {
-      this.showModal();
-      this.generateDataWeather();
-      this.generateDataButton(); // Loads new place data in UTC
-    },
+    }
   },
 };
 </script>

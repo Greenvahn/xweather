@@ -10,7 +10,7 @@ export default class GeoWidget {
     const date = this.date;
     let currentMonth = date.getMonth() + 1;
     currentMonth < 10 ? (currentMonth = "0" + currentMonth) : currentMonth; // month format 00
-    const fullDate = `${date.getUTCDate()}/${currentMonth}/${date.getUTCFullYear()}`;
+    const fullDate = `${date.getUTCDate()}/${currentMonth}/${date.getFullYear()}`;
     return fullDate;
   }
   timezoneToHours(timezone) {
@@ -43,7 +43,9 @@ export default class GeoWidget {
     minutes = this.minutes;
 
     // Time --> PM or AM
-    const ampm = hours >= 12 ? "pm" : "am";
+    // const ampm= hours >= 24 || hours <= 12 ?  "am" : "pm";
+
+    const ampm = hours >= 12 ? "pm" : "am"
     hours = hours % 12;
     hours = hours ? hours : 12; // the hour '0' should be '12'
     minutes = minutes < 10 ? "0" + minutes : minutes;
