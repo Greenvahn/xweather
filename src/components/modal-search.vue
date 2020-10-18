@@ -1,7 +1,7 @@
 <template>
   <section id="searchBar" class="section">
     <!-- Content ... -->
-    <form @submit.prevent="emitValue()">
+    <form @submit.prevent="$emit('data-get')">
       <label for="search" class="hidden-visually">Search: </label>
       <input
         class="input is-large"
@@ -15,12 +15,31 @@
         Search
       </button>
     </form>
-    <button @click="$emit('modal-on-off')" aria-label="close">BACK</button>
+    <div v-if="statusAPI.isOn" class="notification is-danger">
+      <button class="delete" @click="clearError"></button>
+      <h2>{{ statusAPI.message }}</h2>
+      <h3>Search engine is very flexible. How it works:</h3>
+      <ul>
+        <li>
+          To make it more precise put the city's name, comma, 2-letter country
+          code (ISO3166). You will get all proper cities in chosen country. The
+          order is important - the first is city name then comma then country.
+          Example - London, GB or New York, US.
+        </li>
+      </ul>
+    </div>
+    <button
+      @click="$emit('modal-on-off')"
+      aria-label="close"
+      v-if="!statusAPI.isOn"
+    >
+      BACK
+    </button>
   </section>
 </template>
 
 <script>
-// import { reactive } from "vue";
+// import { reactive, watch } from "vue";
 
 export default {
   props: {
@@ -35,15 +54,23 @@ export default {
   // attrs, slots, emit
   // it is not reactive, this means you can safely use ES6 destructuring on context.
   // context = { attrs, slots, emit }
-  setup(props, { emit }) {
-    // let message = reactive("");
+  setup() {
+    // let error = reactive();
 
-    const emitValue = () => {
-      emit("load-new-place")
+    // watch((props.statusAPI.isOn), () => {
+    //   props.statusAPI.isOn ? error = true
+    // });
+    //props.statusAPI.isOn ? error = true : error = false
+
+    // console.log("props.statusAPI.isOn", props.statusAPI.isOn)
+    // console.log("=========", error)
+    const clearError = () => {
+      console.log("--- clear");
+      // error = false;
     };
 
     return {
-      emitValue,
+      clearError,
     };
   },
 };

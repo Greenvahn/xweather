@@ -3,7 +3,7 @@
     <modalSearch
       v-show="modalOn"
       @modal-on-off="showModal()"
-      @load-new-place="loadNewPlace()"
+      @data-get="generateDataWeather()"
       v-model:newCity.lazy="city"
       :status-API="error"
     />
@@ -55,18 +55,23 @@ export default {
   methods: {
     // FECTH API
     // ===========================================
-    // Get current weather - today
+    // GENERATE DATA WEATHER
     generateDataWeather() {
       const newWeather = new fetchData(this.city, this.units);
-      // --> Get current weather
+
+      // --> CURRENT WEATHER --> TODAY
       newWeather.getCurrentWeather().then((data) => {
-         console.log("DATA", data);
+        console.log("DATA", data);
 
         if (data.cod === 200) {
-          // DATA GET
+          // DATA GET 
+          // * Today's weather
           this.data.currentWeather = data; // Get current weather data
           this.data.timezone = data.timezone; // Get timezone
           this.data.country = data.sys.country; // Get country
+
+          // * Generate data button 
+          // this.generateDataButton(); // Loads new place data in UTC
 
           // ERROR STATUS
           this.error.isOn = false; // Updates error status --> false
@@ -76,23 +81,22 @@ export default {
           // MODAL STATUS
           // * Show the modal-search on API status 200
           // * Blocks the modal-search on first launch
-          this.init ? (this.init = false) : this.showModal();
+          // * Blocks the generateDataButton on first launch => Called at created()
+          this.init ? (this.init = false) : this.showModal(), this.generateDataButton();
         }
 
-        if (data.cod === "400") {
+        if (data.cod === "404") {
           this.error.code = Number(data.cod); // Adds API status code
           this.error.isOn = true; // Updates error status --> true
+          this.error.message = `${data.cod} - City not found`;
           console.log(
             `%cAPI STATUS: ${data.cod} - City not found`,
             `color:red`
           );
         }
-
-        // // Validates API request - updates error status - on: false/true
-        // this.validateData(data.cod);
       });
 
-      // --> Get foreCast
+      // --> FORECAST WEATHER
       newWeather.getforeCast().then((data) => {
         // Computed data
         // Generate weekdays into the main forecast data
@@ -113,6 +117,7 @@ export default {
       // Generate initial Data button
       const newDataButton = new geoWidget(this.city, this.data.timezone);
       this.data.location = newDataButton.getData();
+
       this.data.utc = newDataButton.timezoneToHours(this.data.timezone)._UTC;
 
       // Init timer update
@@ -134,13 +139,7 @@ export default {
     // MODAL - SEARCH BAR --> show/hide
     showModal() {
       this.modalOn ? (this.modalOn = false) : (this.modalOn = true);
-    },
-
-    // load new place --> emit from modal-search.vue
-    loadNewPlace() {
-      this.generateDataWeather();
-      this.generateDataButton(); // Loads new place data in UTC
-    },
+    }
   },
 };
 </script>
