@@ -19,9 +19,14 @@ export default class GeoWidget {
     // Updates the UTC date IF the computed hour is bigger than 23 => next day
     // * _compHours > 23 ? _currentUTCDate++
     if (this.computedTimeParams) {
+      console.log("this.computedTimeParams", this.computedTimeParams);
       let _compHours = this.computedTimeParams.h;
       let _currentUTCDate = date.getUTCDate();
-      _compHours > 23 ? _currentUTCDate++ : _compHours;
+      _compHours > 23
+        ? _currentUTCDate++
+        : _compHours < 0
+        ? --_currentUTCDate
+        : _compHours;
 
       fullDate = `${_currentUTCDate}/${currentMonth}/${date.getFullYear()}`;
     }
@@ -63,7 +68,17 @@ export default class GeoWidget {
     minutes = minutes < 10 ? "0" + minutes : minutes; // Adjusted minutes to 00:00 format
     this.computedTimeParams = { h: hours, m: minutes }; // Computed time parameters used to calculate the date => h > 23 => day++
 
-    hours > 23 ? (hours = hours - 24) : hours; // Adjust the hours to 24h format => e.g 30:00 - 24:00 => 06:00 AM
+    // Adjust the total HOURS. 
+    // * There are places behind or ahead of the UTC hour. Apllies adjustements to display correcly
+    hours > 23
+      ? (hours = hours - 24) // Adjust the hours to 24h format => e.g 30:00 - 24:00 => 06:00
+      : hours < 0
+      ? (hours = hours + 24) // Adjust the hours to 24h format => e.g -10:00 + 24:00 => 14:00
+      : hours;
+
+    // Adjust hours to 2 digits => e.g 5:00 => 05:00
+    hours.toString().length >= 2 ? hours : (hours = `0${hours}`); 
+
     const computedTime = `${hours}:${minutes}`;
     return computedTime;
   }
