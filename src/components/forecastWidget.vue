@@ -18,6 +18,7 @@
               widget.weather &&
               widget.weather[0].icon) ||
             'Loading...',
+          isForecast: true
         }"
         class="is-foreCast"
       />
@@ -35,6 +36,6 @@ export default {
   },
   props: {
     infoWeek: Array,
-  },
+  }
 };
 </script>
