@@ -1,10 +1,8 @@
 <template>
   <div class="container has-text-centered">
     <p class="subtitle">{{ infoToday.day }}</p>
-    <img src="../assets/svg-icons/full-sun-icon.svg" />
-    <p class="title">
-      {{ Math.round(infoToday.temperature) }}°
-    </p>
+    <img :src="compIcon()" />
+    <p class="title">{{ Math.round(infoToday.temperature) }}°</p>
     <p v-if="infoToday.description" class="description">
       {{ infoToday.description }}
     </p>
@@ -17,6 +15,22 @@ export default {
   props: {
     infoToday: Object,
   },
+  setup(props) {
+
+    // Hide nigth icons on forecast
+    // Keep icons for 'today' weather
+    const compIcon = () => {
+      let str = props.infoToday.icon;
+      if(props.infoToday.isForecast) {
+        str = str.replace('n', 'd');
+      }
+      return require(`../assets/svg-icons/${str}.svg`)
+    }
+
+    return {
+      compIcon
+    }
+  }
 };
 </script>
 

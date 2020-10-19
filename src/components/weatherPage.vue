@@ -27,6 +27,11 @@
                       dataAPI.currentWeather.weather &&
                       dataAPI.currentWeather.weather[0].main) ||
                     'Loading...',
+                  icon:
+                    (dataAPI.currentWeather &&
+                      dataAPI.currentWeather.weather &&
+                      dataAPI.currentWeather.weather[0].icon) ||
+                    'Loading...',
                 }"
               />
             </div>
