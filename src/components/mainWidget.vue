@@ -1,10 +1,8 @@
 <template>
   <div class="container has-text-centered">
     <p class="subtitle">{{ infoToday.day }}</p>
-    <img src="../assets/svg-icons/full-sun-icon.svg" />
-    <p class="title">
-      {{ Math.round(infoToday.temperature) }}°
-    </p>
+    <img :src="require(`../assets/svg-icons/${infoToday.icon}.svg`)" />
+    <p class="title">{{ Math.round(infoToday.temperature) }}°</p>
     <p v-if="infoToday.description" class="description">
       {{ infoToday.description }}
     </p>
@@ -16,7 +14,7 @@ export default {
   name: "mainWidget",
   props: {
     infoToday: Object,
-  },
+  }
 };
 </script>
 
