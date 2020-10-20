@@ -30,7 +30,7 @@ export default {
   data() {
     return {
       data: {
-        currentWeather: null,
+        currentWeather: {},
         foreCast: [],
         location: null,
         timezone: false,

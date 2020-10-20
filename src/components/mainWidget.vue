@@ -16,21 +16,23 @@ export default {
     infoToday: Object,
   },
   setup(props) {
-
     // Hide nigth icons on forecast
     // Keep icons for 'today' weather
     const compIcon = () => {
       let str = props.infoToday.icon;
-      if(props.infoToday.isForecast) {
-        str = str.replace('n', 'd');
+      if (props.infoToday.isForecast) {
+        str = str.replace("n", "d");
       }
-      return require(`../assets/svg-icons/${str}.svg`)
-    }
+
+    // Check if the str is valid - avoids webpack error module not find....
+      if (str) { return require(`../assets/svg-icons/${str}.svg`)}
+      
+    };
 
     return {
-      compIcon
-    }
-  }
+      compIcon,
+    };
+  },
 };
 </script>
 

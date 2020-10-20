@@ -16,8 +16,7 @@
           icon:  
             (widget &&
               widget.weather &&
-              widget.weather[0].icon) ||
-            'Loading...',
+              widget.weather[0].icon),
           isForecast: true
         }"
         class="is-foreCast"
