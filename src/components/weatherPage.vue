@@ -30,8 +30,7 @@
                   icon:
                     (dataAPI.currentWeather &&
                       dataAPI.currentWeather.weather &&
-                      dataAPI.currentWeather.weather[0].icon) ||
-                    'Loading...',
+                      dataAPI.currentWeather.weather[0].icon)
                 }"
               />
             </div>
