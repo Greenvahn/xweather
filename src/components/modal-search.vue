@@ -3,35 +3,46 @@
     <!-- Content ... -->
     <form @submit.prevent="$emit('data-get')">
       <label for="search" class="hidden-visually">Search: </label>
-      <input
-        class="input is-large"
-        type="text"
-        name="search"
-        placeholder="Input your city"
-        :value="newCity"
-        @input="(event) => $emit('update:newCity', event.target.value)"
-      />
-      <button v-show="newCity" class="button is-normal">
-        Search
-      </button>
+      <div class="field has-addons">
+        <div class="control">
+          <input
+            class="input is-large"
+            type="text"
+            name="search"
+            placeholder="Input your city"
+            :value="newCity"
+            @input="(event) => $emit('update:newCity', event.target.value)"
+          />
+        </div>
+        <div class="control">
+          <button class="button is-normal">
+            <img :src="require('../assets/svg-icons/search-bar.svg')" />
+          </button>
+        </div>
+      </div>
+      <div class="error-wrapper">
+        <transition name="fadeVR">
+          <div v-if="statusAPI.isOn" class="error-status is-primary">
+            <h2>{{ statusAPI.message }}</h2>
+            <div class="help notification is-warning is-light">
+              <h3>Search engine is very flexible. How it works:</h3>
+              <ul>
+                <li>
+                  To make it more precise put the city's name, comma, 2-letter
+                  country code (ISO3166). You will get all proper cities in
+                  chosen country. The order is important - the first is city
+                  name then comma then country. Example - London, GB or New
+                  York, US.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </transition>
+      </div>
     </form>
-    <div v-if="statusAPI.isOn" class="notification is-danger">
-      <button class="delete" @click="clearError"></button>
-      <h2>{{ statusAPI.message }}</h2>
-      <h3>Search engine is very flexible. How it works:</h3>
-      <ul>
-        <li>
-          To make it more precise put the city's name, comma, 2-letter country
-          code (ISO3166). You will get all proper cities in chosen country. The
-          order is important - the first is city name then comma then country.
-          Example - London, GB or New York, US.
-        </li>
-      </ul>
-    </div>
     <button
       @click="$emit('modal-on-off')"
       aria-label="close"
-      v-if="!statusAPI.isOn"
     >
       BACK
     </button>
@@ -92,8 +103,61 @@ export default {
     justify-content: center;
     align-items: center;
     height: 100%;
-    input {
-      width: 60%;
+    .field {
+      width: 100%;
+      margin-top: 15%; // Re adjust seachbar position into the center
+      &.has-addons {
+        justify-content: center;
+        display: flex;
+        flex-direction: row;
+      }
+    }
+    .control {
+      input {
+        border: 2px solid #5a5e90;
+        &:focus {
+          box-shadow: none !important;
+          background: #e8f0fe;
+          // border: 2px solid #5a5e90;
+        }
+      }
+      button {
+        height: 60px;
+        padding: 0px 10px;
+        border: 1px solid #5a5e90;
+        background-color: #5a5e90;
+        img {
+          width: 35px;
+          height: 35px;
+          svg {
+            fill: #5a5e90;
+            stroke: white;
+          }
+        }
+      }
+
+      &:first-child {
+        width: 60%;
+      }
+    }
+
+    .error-wrapper {
+      display: flex;
+      justify-content: center;
+      height: 200px;
+      .error-status {
+        width: 63%;
+        margin-top: 30px;
+        h2 {
+          font-size: 1.2em;
+          width: 100%;
+          margin-left: 20px;
+        }
+        h3 {
+          font-weight: bold;
+          margin-bottom: 10px;
+        }
+      }
     }
   }
 }
