@@ -1,33 +1,27 @@
 
 
-<img alt="logo" width="50%" height="50%" src="https://github.com/Greenvahn/xweather/blob/master/behance-thumbnail.jpg?raw=true">
+<img alt="logo" width="50%" height="50%" src="https://github.com/Greenvahn/xweather/blob/master/xweather-github.jpg?raw=true">
+<h1> A simple weather app </h1>
+<p>:sunny: :sun_behind_small_cloud: :cloud: :cloud_with_rain: :cloud_with_lightning:</p>
 
 ## Technologies
-This project has been created with:
-* [Vue](https://vuejs.org/)
+This project uses:
+* [Vue](https://v3.vuejs.org/)
 * [Node.js](https://nodejs.org/en/download/)
-* [Yarn](https://classic.yarnpkg.com/en/)
+* [Yarn](https://classic.yarnpkg.com/en/) or [NPM](https://www.npmjs.com/)
+* [OpenWeather](https://openweathermap.org/)
 
-## Project status
-```
-version 0.1.0
-```
+## Setup 
+Rename _.env.sample_ to **_.env_** and add your API key into this file. In order to **get an API Key**, go to [OpenWeather](https://openweathermap.org/) and follow the instrunctions. Creating an account it's free! :smile:
 
-## Setup
-Minimun requirements:
-```
-Git  2.28.0
-Node 14.6.0
-Yarn 1.22.0
-```
-
-From your command line:
+Using yarn as example but you could use npm as well. From your command line, type the following:
 ```
 # Install dependencies
 $ yarn install
 # Run the app
 $ yarn start
 ```
+
 
 ### Other scripts available
 Once the project has been installed, the following scripts to use:
@@ -40,6 +34,9 @@ $ yarn lint
 ```
 $ yarn build
 ```
+
+### OpenWeather API
+When searching places: If there are two places with the same name, the API will take the US place as default. To make it more precise put the city's name, comma, 2-letter country code (ISO3166). You will get all proper cities in chosen country. The order is important - the first is city name then comma then country. Example - London, GB or New York, US.
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
