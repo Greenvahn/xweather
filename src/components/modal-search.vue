@@ -148,7 +148,7 @@ export default {
       justify-content: center;
       height: 200px;
       .error-status {
-        width: 63%;
+        width: 65%;
         margin-top: 30px;
         h2 {
           font-size: 1.2em;
@@ -158,6 +158,9 @@ export default {
         h3 {
           font-weight: bold;
           margin-bottom: 10px;
+        }
+        @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+          width: 100%;
         }
       }
     }
@@ -177,6 +180,10 @@ export default {
 
     &:focus {
       outline: none;
+    }
+
+    &:hover {
+      background: #404366;
     }
 
     img {
