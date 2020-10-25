@@ -41,9 +41,11 @@
       </div>
     </form>
     <button
+      class="back-button"
       @click="$emit('modal-on-off')"
       aria-label="close"
     >
+      <img :src="require('../assets/svg-icons/chevron-back.svg')" />
       BACK
     </button>
   </section>
@@ -158,6 +160,29 @@ export default {
           margin-bottom: 10px;
         }
       }
+    }
+  }
+  .back-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: -10% auto 0 auto;
+    width: 85px;
+    height: 40px;
+    border-radius: 5px;
+    background: #5a5e90;
+    color: white;
+    border: none;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+
+    img {
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
     }
   }
 }
