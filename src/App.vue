@@ -169,4 +169,22 @@ export default {
     transform: translateX(0px);
   }
 }
+
+
+.fadeVR-enter-active {
+  animation: fade-in-vertical 0.3s;
+}
+.fadeVR-leave-active {
+  animation: fade-in-vertical 0.5s reverse;
+}
+@keyframes fade-in-vertical {
+  0% {
+    opacity: 0;
+    transform: translateY(+200px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
 </style>
