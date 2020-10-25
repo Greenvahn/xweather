@@ -1,7 +1,7 @@
 
 
-<img alt="logo" width="50%" height="50%" src="https://github.com/Greenvahn/xweather/blob/master/xweather-github.jpg?raw=true">
-<h1> A simple weather app </h1>
+<img alt="logo" width="30%" height="20%" src="https://github.com/Greenvahn/xweather/blob/master/xweather-github.jpg?raw=true">
+<h2> A simple weather app </h2>
 <p>:sunny: :sun_behind_small_cloud: :cloud: :cloud_with_rain: :cloud_with_lightning:</p>
 
 ## Technologies
