@@ -41,10 +41,12 @@ img {
   max-width: 175px;
 }
 p {
+  color: white;
   &.subtitle {
     text-transform: uppercase;
     font-size: 32px;
     margin-bottom: 0px;
+    font-weight: 600;
   }
   &.title {
     font-size: 100px;

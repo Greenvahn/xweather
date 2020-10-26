@@ -1,5 +1,8 @@
 <template>
-  <div class="bg-wrapper" :style="`background: url(${compIcon()}) ; background-size:cover`">
+  <div
+    class="bg-wrapper"
+    :style="`background: url(${compIcon()}) ; background-size:cover`"
+  >
     <!-- <img :src="compIcon()" /> -->
   </div>
 </template>
@@ -12,23 +15,16 @@ export default {
     dataAPI: Object,
   },
   setup(props) {
-
     const compIcon = () => {
-        console.log("props.dataAPI.currentWeather", props.dataAPI.currentWeather.weather[0].icon)
       let str = props.dataAPI.currentWeather.weather[0].icon;
-      
-      if (props.dataAPI.currentWeather.weather[0].icon) {
-        str = str.replace("n", "d");
+      // Check if the str is valid - avoids webpack error module not find....
+      if (str) {
+        return require(`../assets/backgrounds/${str}.jpg`);
       }
-
-    // Check if the str is valid - avoids webpack error module not find....
-      if (str) { return require(`../assets/backgrounds/open_sky.jpg`)}
-      
     };
     return {
       compIcon,
     };
-
   },
 };
 </script>

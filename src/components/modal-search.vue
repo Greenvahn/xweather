@@ -169,7 +169,7 @@ export default {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin: -100px auto 0 auto;
+    margin: -65px auto 0 auto;
     width: 85px;
     height: 40px;
     border-radius: 5px;
