@@ -13,11 +13,13 @@
     @click="stopTimer()"
     @modal-on-off="showModal()"
   />
+  <backgrounds :data-API="data" />
 </template>
 <script>
 import modalSearch from "./components/modal-search.vue";
 import weatherPage from "./components/weatherPage.vue";
 import geoWidget from "./composables/geowidgetTime.js";
+import backgrounds from "./components/backgrounds.vue";
 import fetchData from "./composables/fetchData.js";
 import getDay from "./composables/widgetDay.js";
 
@@ -26,6 +28,7 @@ export default {
   components: {
     weatherPage,
     modalSearch,
+    backgrounds,
   },
   data() {
     return {
@@ -64,13 +67,13 @@ export default {
         console.log("DATA", data);
 
         if (data.cod === 200) {
-          // DATA GET 
+          // DATA GET
           // * Today's weather
           this.data.currentWeather = data; // Get current weather data
           this.data.timezone = data.timezone; // Get timezone
           this.data.country = data.sys.country; // Get country
 
-          // * Generate data button 
+          // * Generate data button
           // this.generateDataButton(); // Loads new place data in UTC
 
           // ERROR STATUS
@@ -82,7 +85,8 @@ export default {
           // * Show the modal-search on API status 200
           // * Blocks the modal-search on first launch
           // * Blocks the generateDataButton on first launch => Called at created()
-          this.init ? (this.init = false) : this.showModal(), this.generateDataButton();
+          this.init ? (this.init = false) : this.showModal(),
+            this.generateDataButton();
         }
 
         if (data.cod === "404") {
@@ -139,7 +143,7 @@ export default {
     // MODAL - SEARCH BAR --> show/hide
     showModal() {
       this.modalOn ? (this.modalOn = false) : (this.modalOn = true);
-    }
+    },
   },
 };
 </script>
@@ -152,6 +156,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   height: 100%;
+  overflow: hidden;
 }
 .fade-enter-active {
   animation: fade-in 0.3s;
@@ -169,7 +174,6 @@ export default {
     transform: translateX(0px);
   }
 }
-
 
 .fadeVR-enter-active {
   animation: fade-in-vertical 0.3s;

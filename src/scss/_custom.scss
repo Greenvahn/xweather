@@ -9,13 +9,7 @@ html {
     height: 100%;
 }
 
-/* Forecast panel - custom styles*/
-.todays-panel {
-    background: lightgrey;
-}
-
 .forecast-panel {
-    background: lightblue;
 
     /* Forecast */
     .forecast--info {
@@ -60,4 +54,4 @@ html {
     width: 1px;
     clip: rect(0 0 0 0);
     clip-path: inset(100%);
-  }
+}
