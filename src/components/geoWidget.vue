@@ -1,9 +1,10 @@
 <template>
-  <button class="button is-medium">
+  <button class="button is-medium" :title=infoPlace.place>
     <span class="info">
       <p class="is-date">{{ infoPlace.date }}</p>
       <h2 class="is-title">
-        {{ infoPlace.place }}
+       <!-- {{ infoPlace.place }} -->
+       {{ truncated( infoPlace.place, 12) }}
       </h2>
       <p class="is-time">
         {{ infoPlace.time }}
@@ -25,6 +26,18 @@ export default {
   name: "geoWidget",
   props: {
     infoPlace: Object,
+  },
+  setup() {
+    const truncated = (content, limit) => {
+      // Limit --> define the limit of characters to show
+      return content.length > limit
+        ? content.slice(0, limit) + '...'
+        : content;
+    };
+
+    return {
+      truncated,
+    };
   },
 };
 </script>
