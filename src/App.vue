@@ -52,10 +52,23 @@ export default {
     };
   },
   created() {
-    this.generateDataWeather();
+    this.initApp(); // Gets geolocation + generates data weather
     this.generateDataButton();
   },
   methods: {
+    initApp() {
+      // GEOLOCATON - external locator https://geolocation-db.com
+      // Starts by checking user's location by IPv6
+      const initData = new fetchData();
+      initData.getGeolocation().then((data) => {
+        console.log("GEOLOCATION", data);
+        // Retrieves data city - sets to London if false.
+        data.city ? (this.city = data.city) : (this.city = "London");
+        // Generates data weather
+        this.generateDataWeather();
+      });
+    },
+
     // FECTH API
     // ===========================================
     // GENERATE DATA WEATHER
