@@ -5,11 +5,14 @@
   "scripts": {
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "start": "vue-cli-service serve"
+    "start": "vue-cli-service serve",
+    "deploy": "firebase deploy --only hosting"
   },
   "dependencies": {
     "bulma": "^0.9.0",
     "core-js": "^3.6.5",
+    "firebase-tools": "^8.14.1",
+    "global": "^4.4.0",
     "sass": "^1.26.10",
     "sass-loader": "^10.0.2",
     "vue": "^3.0.0-0"

@@ -8,6 +8,15 @@ export default class fetchData {
 
   // FECTH API
   // ===========================================
+
+  // Get geolocation via IP
+  // https://geolocation-db.com/documentation
+  getGeolocation = async () => {
+    const res = await fetch(`https://geolocation-db.com/json/`);
+    const data = await res.json();
+    return data;
+  };
+
   // Get current weather - today
   getCurrentWeather = async () => {
     const res = await fetch(
@@ -16,6 +25,7 @@ export default class fetchData {
     const data = await res.json();
     return data;
   };
+  
   // Get forecast for next 4 days
   getforeCast = async () => {
     const res = await fetch(
