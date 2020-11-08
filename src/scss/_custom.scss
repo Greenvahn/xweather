@@ -1,5 +1,4 @@
 // Import all scss modules here
-
 @import "vars";
 @import "typography";
 
@@ -7,6 +6,10 @@ body,
 html {
     width: 100%;
     height: 100%;
+}
+
+button {
+    -webkit-appearance: none;
 }
 
 .forecast-panel {
@@ -56,58 +59,5 @@ html {
     clip-path: inset(100%);
 }
 
-
-// Iphone 5 media queries - aspect ratio 40:71
-// * Note that the iPhone 5 does not have a 16:9 aspect ratio. It is in fact 40:71.
-@media screen and (device-aspect-ratio: 40/71) {
-
-    // .column {
-    //     padding: 0.35rem !important;
-    // }
-
-    // Logo
-    .logo-wrap {
-        padding: 0px !important;
-        .container img {
-            max-width: 70px;
-        }
-    }
-
-
-    // Main icon
-    .mainWidget-wrap {
-        .container {
-            img {
-                max-width: 115px;
-                margin-top: -20px;
-            }
-
-            .title {
-                font-size: 75px;
-            }
-
-            .subtitle {
-                font-size: 25px;
-            }
-        }
-    }
-
-    // forecast icons
-    .forecast-panel .forecast--info {
-        min-height: 240px;
-
-        .level.is-mobile .level-item:not(:last-child) {
-            margin-right: 0px;
-        }
-
-        .is-foreCast {
-            img {
-                max-width: 50px;
-            }
-
-            p {
-                font-size: 20px;
-            }
-        }
-    }
-}
+// Import media queries at the end ( cascade style values )
+@import "media-queries.scss";
