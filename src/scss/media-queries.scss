@@ -1,0 +1,248 @@
+// Iphone 5 media queries - aspect ratio 40:71
+// * Note that the iPhone 5 does not have a 16:9 aspect ratio. It is in fact 40:71.
+@media screen and (device-aspect-ratio: 40/71) {
+
+    // Logo
+    .logo-wrap {
+        padding: 0px !important;
+
+        .container img {
+            max-width: 70px;
+        }
+    }
+
+
+    // Main icon
+    .mainWidget-wrap {
+        .container {
+            img {
+                max-width: 115px;
+                margin-top: -20px;
+            }
+
+            .title {
+                font-size: 75px;
+            }
+
+            .subtitle {
+                font-size: 25px;
+            }
+        }
+    }
+
+    // forecast icons
+    .forecast-panel .forecast--info {
+        min-height: 240px;
+
+        .level.is-mobile .level-item:not(:last-child) {
+            margin-right: 0px;
+        }
+
+        .is-foreCast {
+            img {
+                max-width: 50px;
+            }
+
+            p {
+                font-size: 20px;
+            }
+        }
+    }
+}
+
+/* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+// The app will be displayed on the broswer
+// The screen size is 375px - 667px
+// Adjust elements keeping in mind the following:
+// -- The browser window 375px - 559px
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
+
+    // Logo
+    .logo-wrap {
+        padding: 0px;
+
+        .container img {
+            max-width: 70px;
+        }
+    }
+
+
+    // Main icon
+    .mainWidget-wrap {
+        .container {
+            img {
+                max-width: 115px;
+                margin-top: -20px;
+            }
+
+            .title {
+                font-size: 75px;
+            }
+
+            .subtitle {
+                font-size: 25px;
+            }
+        }
+    }
+
+    // forecast icons
+    .forecast-panel .forecast--info {
+        min-height: 240px;
+
+        .level.is-mobile .level-item:not(:last-child) {
+            margin-right: 0px;
+        }
+
+        .is-foreCast {
+            img {
+                max-width: 50px;
+            }
+
+            p {
+                font-size: 20px;
+            }
+        }
+    }
+
+}
+
+/* ----------- iPhone 10 ----------- */
+@media only screen and (device-width: 375px) and (device-height : 812px) {
+
+    // Logo
+    .logo-wrap {
+        padding: 10px;
+
+        .container img {
+            max-width: 110px;
+        }
+    }
+
+    // Main icon
+    .mainWidget-wrap {
+        .container {
+            img {
+                max-width: 135px;
+                margin-top: 0px;
+            }
+
+            .title {
+                font-size: 100px;
+                margin-top: -30px;
+            }
+
+            .subtitle {
+                font-size: 32px;
+            }
+        }
+    }
+
+    // forecast icons
+    .forecast-panel .forecast--info {
+        min-height: 290px;
+    }
+}
+
+
+/* ----------- iPhone 11 ----------- */
+@media only screen and (device-width: 414px) and (max-device-width: 719px) {
+
+    // Logo
+    .logo-wrap {
+        padding: 10px;
+
+        .container img {
+            max-width: 75px;
+        }
+    }
+
+
+    .mainWidget-wrap {
+        .container {
+            img {
+                max-width: 135px;
+                margin-top: 0px;
+            }
+
+            .title {
+                font-size: 75px;
+                margin-top: 0px;
+            }
+
+            .subtitle {
+                font-size: 32px;
+            }
+        }
+    }
+
+
+    // forecast icons
+    .forecast-panel .forecast--info {
+        min-height: 200px;
+
+        .level.is-mobile .level-item:not(:last-child) {
+            margin-right: 0px;
+        }
+
+        .is-foreCast {
+            img {
+                max-width: 75px;
+            }
+
+            p {
+                font-size: 24px;
+            }
+        }
+    }
+}
+
+/* ----------- One plus 6 browser size ----------- */
+@media only screen and (device-width: 455px) and (max-device-width: 823px) {
+    // Logo
+    .logo-wrap {
+        padding: 10px;
+
+        .container img {
+            max-width: 120px;
+        }
+    }
+
+    .mainWidget-wrap {
+        .container {
+            img {
+                max-width: 135px;
+                margin-top: 0px;
+            }
+
+            .title {
+                font-size: 100px;
+                margin-top: 0px;
+            }
+
+            .subtitle {
+                font-size: 32px;
+            }
+        }
+    }
+
+    // forecast icons
+    .forecast-panel .forecast--info {
+        min-height: 310px;
+
+        .level.is-mobile .level-item:not(:last-child) {
+            margin-right: 10px;
+        }
+
+        .is-foreCast {
+            img {
+                max-width: 100px;
+            }
+
+            p {
+                font-size: 24px;
+            }
+        }
+    }
+
+}

@@ -1,5 +1,4 @@
 // Import all scss modules here
-
 @import "vars";
 @import "typography";
 
@@ -7,6 +6,10 @@ body,
 html {
     width: 100%;
     height: 100%;
+}
+
+button {
+    -webkit-appearance: none;
 }
 
 .forecast-panel {
@@ -55,3 +58,6 @@ html {
     clip: rect(0 0 0 0);
     clip-path: inset(100%);
 }
+
+// Import media queries at the end ( cascade style values )
+@import "media-queries.scss";
