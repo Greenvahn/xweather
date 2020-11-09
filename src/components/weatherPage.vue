@@ -12,6 +12,7 @@
               class="logo-wrap column is-half-tablet is-two-thirds-desktop is-three-quarters-widescreen is-four-fifths-fullhd"
             >
               <logoWidget />
+              <links @click="$emit('modal-info')" />
             </div>
             <div class="mainWidget-wrap column">
               <MainWidget
@@ -28,9 +29,9 @@
                       dataAPI.currentWeather.weather[0].main) ||
                     'Loading...',
                   icon:
-                    (dataAPI.currentWeather &&
-                      dataAPI.currentWeather.weather &&
-                      dataAPI.currentWeather.weather[0].icon)
+                    dataAPI.currentWeather &&
+                    dataAPI.currentWeather.weather &&
+                    dataAPI.currentWeather.weather[0].icon,
                 }"
               />
             </div>
@@ -68,6 +69,7 @@ import MainWidget from "./mainWidget.vue";
 import forecastWidget from "./forecastWidget.vue";
 import geoWidget from "./geoWidget.vue";
 import logoWidget from "./logoWidget.vue";
+import links from "./linksWidget.vue";
 
 export default {
   name: "weatherPage",
@@ -79,16 +81,21 @@ export default {
     forecastWidget,
     geoWidget,
     logoWidget,
+    links
   },
   data() {
     return {
       modalOn: false,
+      // modalInfo: false,
     };
   },
   methods: {
     showModal() {
       this.modalOn ? (this.modalOn = false) : (this.modalOn = true);
     },
+    // showInfo() {
+    //   this.modaInfo ? (this.modaInfo = false) : (this.modaInfo = true);
+    // },
   },
 };
 </script>

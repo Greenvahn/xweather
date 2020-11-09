@@ -52,40 +52,11 @@
 </template>
 
 <script>
-// import { reactive, watch } from "vue";
-
 export default {
   props: {
     newCity: String,
     statusAPI: Object,
-  },
-
-  // Composition API - vue 3
-  // ======================================
-  // The second argument passed to the setup function is the context.
-  // The context is a normal JavaScript object that exposes three component properties:
-  // attrs, slots, emit
-  // it is not reactive, this means you can safely use ES6 destructuring on context.
-  // context = { attrs, slots, emit }
-  setup() {
-    // let error = reactive();
-
-    // watch((props.statusAPI.isOn), () => {
-    //   props.statusAPI.isOn ? error = true
-    // });
-    //props.statusAPI.isOn ? error = true : error = false
-
-    // console.log("props.statusAPI.isOn", props.statusAPI.isOn)
-    // console.log("=========", error)
-    const clearError = () => {
-      console.log("--- clear");
-      // error = false;
-    };
-
-    return {
-      clearError,
-    };
-  },
+  }
 };
 </script>
 
