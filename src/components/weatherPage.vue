@@ -9,10 +9,22 @@
         >
           <div class="columns">
             <div
-              class="logo-wrap column is-half-tablet is-two-thirds-desktop is-three-quarters-widescreen is-four-fifths-fullhd"
+              class="logo-wrap column is-half-tablet is-two-thirds-desktop is-three-quarters-widescreen is-three-fifths-fullhd"
             >
               <logoWidget />
-              <links @click="$emit('modal-info')" />
+              <div class="links-wrap">
+                <links />
+                <button
+                  class="button is-information"
+                  @click="$emit('modal-info')"
+                >
+                  <span class="icon">
+                    <img
+                      :src="require('../assets/svg-icons/information-icon.svg')"
+                    />
+                  </span>
+                </button>
+              </div>
             </div>
             <div class="mainWidget-wrap column">
               <MainWidget
@@ -81,7 +93,7 @@ export default {
     forecastWidget,
     geoWidget,
     logoWidget,
-    links
+    links,
   },
   data() {
     return {

@@ -4,10 +4,13 @@
 
     // Logo
     .logo-wrap {
-        padding: 0px !important;
-
-        .container img {
-            max-width: 70px;
+        flex-direction: row;
+        // padding: 0px !important;
+        .logo-img {
+            width: 50%;
+        }
+        .links-wrap {
+            width: 50%;
         }
     }
 
@@ -58,14 +61,23 @@
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
 
-    // Logo
+    // Logo + Links
     .logo-wrap {
-        padding: 0px;
-
-        .container img {
-            max-width: 70px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        .logo-img {
+            width: 20%;
+            border: none;
+            margin: 0px;
+        }
+        .links-wrap {
+            width: 100%;
+            justify-content: flex-end;
+            margin: 0px;
         }
     }
+
 
 
     // Main icon
@@ -110,14 +122,23 @@
 /* ----------- iPhone 10 ----------- */
 @media only screen and (device-width: 375px) and (device-height : 812px) {
 
-    // Logo
+    // Logo + Links
     .logo-wrap {
-        padding: 10px;
-
-        .container img {
-            max-width: 110px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        .logo-img {
+            width: 20%;
+            border: none;
+            margin: 0px;
+        }
+        .links-wrap {
+            width: 100%;
+            justify-content: flex-end;
+            margin: 0px;
         }
     }
+
 
     // Main icon
     .mainWidget-wrap {
@@ -148,12 +169,21 @@
 /* ----------- iPhone 11 ----------- */
 @media only screen and (device-width: 414px) and (max-device-width: 719px) {
 
-    // Logo
+    // Logo + Links
     .logo-wrap {
-        padding: 10px;
-
-        .container img {
-            max-width: 75px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 45px;
+        .logo-img {
+            width: 20%;
+            border: none;
+            margin: 0px;
+        }
+        .links-wrap {
+            width: 100%;
+            justify-content: flex-end;
+            margin: 0px;
         }
     }
 
@@ -199,12 +229,26 @@
 
 /* ----------- One plus 6 browser size ----------- */
 @media only screen and (device-width: 455px) and (max-device-width: 823px) {
-    // Logo
+    // Logo + Links
     .logo-wrap {
-        padding: 10px;
-
-        .container img {
-            max-width: 120px;
+        display: flex !Important;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 45px;
+        .logo-img {
+            width: 25%;
+            border: none;
+            margin: 0px;
+        }
+        .links-wrap {
+            width: 100%;
+            justify-content: flex-end;
+            margin: 0px;
+            .button {
+                width: 25px;
+                height: 25px;
+            }
         }
     }
 
