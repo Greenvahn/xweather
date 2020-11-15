@@ -4,8 +4,8 @@
 
     // Logo
     .logo-wrap {
+        display: flex !important; // Overwrites default display block from column
         flex-direction: row;
-        // padding: 0px !important;
         .logo-img {
             width: 50%;
         }
@@ -63,6 +63,7 @@
 
     // Logo + Links
     .logo-wrap {
+        display: flex !important;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
@@ -124,6 +125,7 @@
 
     // Logo + Links
     .logo-wrap {
+        display: flex !important;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
@@ -171,6 +173,7 @@
 
     // Logo + Links
     .logo-wrap {
+        display: flex !important;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
