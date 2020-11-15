@@ -150,7 +150,7 @@
       <p>
         This is a personal project where the main aims are to put in practice
         some of the known skills and develop new ones. This project is licensed
-        under the terms of the <a href="#">MIT license</a>
+        under the terms of the <a href="https://github.com/Greenvahn/xweather/blob/master/LICENSE" target="_blank">MIT license</a>
       </p>
       <button
         class="back-button"
@@ -176,6 +176,7 @@ export default {
   top: 0;
   left: 0;
   height: auto;
+  min-height: 100%;
   width: 100%;
   z-index: 2;
   background: rgba(255, 255, 255, 1);
@@ -207,8 +208,6 @@ export default {
 
     .tableWrap {
       table {
-        // max-width: 190px;
-        // margin-right: 20px;
         th {
           font-size: 14px;
           color: #5a5e90;
