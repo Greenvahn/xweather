@@ -12,6 +12,10 @@ button {
     -webkit-appearance: none;
 }
 
+ul li {
+    font-family: $family-secondary;
+}
+
 .forecast-panel {
 
     /* Forecast */
