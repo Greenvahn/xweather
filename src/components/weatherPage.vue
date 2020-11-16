@@ -9,9 +9,22 @@
         >
           <div class="columns">
             <div
-              class="logo-wrap column is-half-tablet is-two-thirds-desktop is-three-quarters-widescreen is-four-fifths-fullhd"
+              class="logo-wrap column is-half-tablet is-two-thirds-desktop is-three-quarters-widescreen is-three-fifths-fullhd"
             >
               <logoWidget />
+              <div class="links-wrap">
+                <links />
+                <button
+                  class="button is-information"
+                  @click="$emit('modal-info')"
+                >
+                  <span class="icon">
+                    <img
+                      :src="require('../assets/svg-icons/information-icon.svg')"
+                    />
+                  </span>
+                </button>
+              </div>
             </div>
             <div class="mainWidget-wrap column">
               <MainWidget
@@ -28,9 +41,9 @@
                       dataAPI.currentWeather.weather[0].main) ||
                     'Loading...',
                   icon:
-                    (dataAPI.currentWeather &&
-                      dataAPI.currentWeather.weather &&
-                      dataAPI.currentWeather.weather[0].icon)
+                    dataAPI.currentWeather &&
+                    dataAPI.currentWeather.weather &&
+                    dataAPI.currentWeather.weather[0].icon,
                 }"
               />
             </div>
@@ -68,6 +81,7 @@ import MainWidget from "./mainWidget.vue";
 import forecastWidget from "./forecastWidget.vue";
 import geoWidget from "./geoWidget.vue";
 import logoWidget from "./logoWidget.vue";
+import links from "./linksWidget.vue";
 
 export default {
   name: "weatherPage",
@@ -79,16 +93,21 @@ export default {
     forecastWidget,
     geoWidget,
     logoWidget,
+    links,
   },
   data() {
     return {
       modalOn: false,
+      // modalInfo: false,
     };
   },
   methods: {
     showModal() {
       this.modalOn ? (this.modalOn = false) : (this.modalOn = true);
     },
+    // showInfo() {
+    //   this.modaInfo ? (this.modaInfo = false) : (this.modaInfo = true);
+    // },
   },
 };
 </script>

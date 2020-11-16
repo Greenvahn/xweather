@@ -8,15 +8,20 @@
       :status-API="error"
     />
   </transition>
+  <transition name="fade">
+    <modalInfo v-show="modalInfo" @modal-info="showInfo()" />
+  </transition>
   <weather-page
     :data-API="data"
     @click="stopTimer()"
     @modal-on-off="showModal()"
+    @modal-info="showInfo()"
   />
   <backgrounds :data-API="data" />
 </template>
 <script>
 import modalSearch from "./components/modal-search.vue";
+import modalInfo from "./components/modal-info.vue";
 import weatherPage from "./components/weatherPage.vue";
 import geoWidget from "./composables/geowidgetTime.js";
 import backgrounds from "./components/backgrounds.vue";
@@ -28,6 +33,7 @@ export default {
   components: {
     weatherPage,
     modalSearch,
+    modalInfo,
     backgrounds,
   },
   data() {
@@ -43,6 +49,7 @@ export default {
       city: "London",
       units: "metric",
       modalOn: false,
+      modalInfo: false,
       init: true,
       error: {
         isOn: false,
@@ -66,7 +73,7 @@ export default {
         data.city ? (this.city = data.city) : (this.city = "London");
         // Generates data weather
         this.generateDataWeather();
-      });
+      }).catch(() => console.log("Can’t access Geolocation response. Blocked by browser?"));
     },
 
     // FECTH API
@@ -98,8 +105,7 @@ export default {
           // * Show the modal-search on API status 200
           // * Blocks the modal-search on first launch
           // * Blocks the generateDataButton on first launch => Called at created()
-          this.init ? (this.init = false) : this.showModal(),
-            this.generateDataButton();
+          this.init ? (this.init = false) : this.showModal(), this.generateDataButton();
         }
 
         if (data.cod === "404") {
@@ -156,6 +162,10 @@ export default {
     // MODAL - SEARCH BAR --> show/hide
     showModal() {
       this.modalOn ? (this.modalOn = false) : (this.modalOn = true);
+    },
+    // MODAL - INFORMATION --> show/hide
+    showInfo() {
+      this.modalInfo ? (this.modalInfo = false) : (this.modalInfo = true);
     },
   },
 };
