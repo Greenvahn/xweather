@@ -4,6 +4,10 @@
 <h2> A simple weather app </h2>
 <p>:sunny: :sun_behind_small_cloud: :cloud: :cloud_with_rain: :cloud_with_lightning:</p>
 
+This single web app allows you to check the weather worldwide for any specific location. --> **[live demo](https://x-weather-app.web.app/)**.
+
+
+
 ## Technologies
 This project uses:
 * [Vue](https://v3.vuejs.org/)
