@@ -6,22 +6,24 @@
         XWeather displays the weather information based on your
         <a href="https://en.wikipedia.org/wiki/IP_address" target="_blank"
           >IP location</a
-        >. This data may not be accurate in some locations and it can variate
-        depending of the IP settings and geographical restrictions.
+        >. This data may not be accurate in some locations and can vary
+        depending on your IP settings and geographical restrictions.
       </p>
 
-      <h3>Target different places</h3>
+      <h3>Look up specific places</h3>
       <p>
-        It is poissble to check the weather worldwide from any specific
-        location. Just press the geoloaction button and target the wished place.
+        The app allows you to check the weather worldwide for any specific
+        location worldwide. Simply click the geolocation button and type in the
+        desired place.
       </p>
       <img class="geoImg" :src="require('../assets/geolocationwidget.jpg')" />
       <h3>404 - City not found</h3>
       <p>
-        If you can’t find your city/place when using the geoloaction button, try
-        the following: the following:
+        If the place you searched for is not found or not the one you are
+        looking for, try the following:
       </p>
       <ul>
+        <li>Double check the place is spelled correctly</li>
         <li>
           Put the city's name, comma, 2-letter country code
           <a
@@ -148,9 +150,13 @@
       </div>
       <h1>Disclaimer</h1>
       <p>
-        This is a personal project where the main aims are to put in practice
-        some of the known skills and develop new ones. This project is licensed
-        under the terms of the <a href="https://github.com/Greenvahn/xweather/blob/master/LICENSE" target="_blank">MIT license</a>
+        This is a personal project to develop my skills and put them into practice. This project is licensed
+        under the terms of the
+        <a
+          href="https://github.com/Greenvahn/xweather/blob/master/LICENSE"
+          target="_blank"
+          >MIT license</a
+        >
       </p>
       <button
         class="back-button"
