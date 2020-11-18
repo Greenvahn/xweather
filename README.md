@@ -1,6 +1,29 @@
 
 
-<img alt="logo" width="30%" height="20%" src="https://github.com/Greenvahn/xweather/blob/master/xweather-github.jpg?raw=true">
+<p align="center"><img alt="logo" width="30%" height="20%" src="https://github.com/Greenvahn/xweather/blob/master/xweather-github.jpg?raw=true"></p>
+
+<p align="center">
+  <a href="https://x-weather-app.web.app/" target="_blank">
+    <img src="https://img.shields.io/website?up_message=online&url=https%3A%2F%2Fx-weather-app.web.app%2F?style=for-the-badge">
+  </a>
+  &nbsp
+  <a href="https://img.shields.io/github/license/Greenvahn/xweather" target="_blank">
+    <img src="https://img.shields.io/github/license/Greenvahn/xweather">
+  </a>  
+  &nbsp
+  <a href="https://github.com/Greenvahn/xweather/actions" target="_blank">
+    <img src="https://img.shields.io/github/workflow/status/Greenvahn/xweather/Xweather">
+  </a>
+  &nbsp
+  <a href="https://img.shields.io/github/repo-size/Greenvahn/xweather" target="_blank">
+    <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/Greenvahn/xweather">
+  </a>
+  &nbsp
+  <a href="https://twitter.com/Greenvahn" target="_blank">
+    <img src="https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Ftwitter.com%2FGreenvahn">
+  </a>
+</p>
+<br>
 <h2> A simple weather app </h2>
 <p>:sunny: :sun_behind_small_cloud: :cloud: :cloud_with_rain: :cloud_with_lightning:</p>
 
